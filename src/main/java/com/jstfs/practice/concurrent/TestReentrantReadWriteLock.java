@@ -10,7 +10,7 @@ import org.junit.Before;
 import org.junit.Test;
 
 public class TestReentrantReadWriteLock {
-	private Map<String, String> buffer = new HashMap<>();
+	private Map<String, String> buffer = new HashMap<String, String>();
 	private final ReentrantReadWriteLock lock = new ReentrantReadWriteLock();
 	private final ReadLock r = lock.readLock();
 	private final WriteLock w = lock.writeLock();
