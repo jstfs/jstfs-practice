@@ -1,19 +1,15 @@
-package com.jstfs.practice.concurrent;
+package com.jstfs.practice.test.concurrent;
 
 import java.util.HashMap;
 import java.util.Map;
-import java.util.concurrent.locks.ReentrantReadWriteLock;
-import java.util.concurrent.locks.ReentrantReadWriteLock.ReadLock;
-import java.util.concurrent.locks.ReentrantReadWriteLock.WriteLock;
+import java.util.concurrent.locks.StampedLock;
 
 import org.junit.Before;
 import org.junit.Test;
 
-public class TestReentrantReadWriteLock {
+public class TestStampedLock {
 	private Map<String, String> buffer = new HashMap<String, String>();
-	private final ReentrantReadWriteLock lock = new ReentrantReadWriteLock();
-	private final ReadLock r = lock.readLock();
-	private final WriteLock w = lock.writeLock();
+	private final StampedLock lock = new StampedLock();
 	
 	@Before
 	public void init() {
@@ -49,17 +45,25 @@ public class TestReentrantReadWriteLock {
 	
 	public String getDataWithBuffer(String input) {
 		String output = null;
-		r.lock();
-		
-		try {
-			w.tryLock();
-			output = buffer.get(input);
-		} finally {
-			r.unlock();
+		//优先进行乐观读,乐观读是不加锁的
+		long stamp = lock.tryOptimisticRead();
+		output = buffer.get(input);
+		if(!lock.validate(stamp)) {
+			//说明乐观读之后,有其他线程进行了写操作,则升级为读锁,重新获取数据
+			//有一个疑问,就是当validate验证成功之后,并且当前线程结束,也就是说还没有使用完缓存数据,这个时候缓存被重新写入了
+			//这样看起来validate()的意义在哪里?我理解validate()是防止数据的不一致性,
+			//比如一次要从缓存中拿很多业务数据,而调用validate()则可以保证要么拿到的都是老数据,要么就在读锁之后拿到的全部是新数据
+			//可以防止乐观读之后拿的数据,由于写线程正在写入数据,从而导致拿了一部分老数据,一部分新数据
+			stamp = lock.readLock();
+			try {
+				output = buffer.get(input);
+			} finally {
+				lock.unlockRead(stamp);
+			}
 		}
 		
 		if(output == null) {
-			w.lock();
+			stamp = lock.writeLock();
 			try {
 				output = buffer.get(input);
 				if(output == null) {
@@ -67,7 +71,7 @@ public class TestReentrantReadWriteLock {
 					buffer.put(input, output);
 				}
 			} finally {
-				w.unlock();
+				lock.unlockWrite(stamp);
 			}
 		}
 		return output;
