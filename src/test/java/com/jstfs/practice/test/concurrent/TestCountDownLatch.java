@@ -9,9 +9,9 @@ public class TestCountDownLatch {
 	
 	@Test
 	public void testMain() {
-		Thread t1 = new Thread(new MyThread(lock, "买西红柿", 1000));
-		Thread t2 = new Thread(new MyThread(lock, "买鸡蛋", 2500));
-		Thread t3 = new Thread(new MyThread(lock, "买食用油", 2000));
+		Thread t1 = new Thread(new ReadyThread(lock, "买西红柿", 1000));
+		Thread t2 = new Thread(new ReadyThread(lock, "买鸡蛋", 2500));
+		Thread t3 = new Thread(new ReadyThread(lock, "买食用油", 2000));
 		
 		t1.start();
 		t2.start();
@@ -25,11 +25,12 @@ public class TestCountDownLatch {
 		}
 	}
 	
-	class MyThread implements Runnable {
+	class ReadyThread implements Runnable {
 		private CountDownLatch lock;
 		private long elapse;
 		private String name;
-		MyThread(CountDownLatch lock, String name, long elapse) {
+		
+		ReadyThread(CountDownLatch lock, String name, long elapse) {
 			this.lock = lock;
 			this.name = name;
 			this.elapse = elapse;
