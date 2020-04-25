@@ -10,6 +10,7 @@
 		<artifactId>jstfs-pom</artifactId>
 		<groupId>com.jstfs</groupId>
 		<version>1.0.0</version>
+		<relativePath>../jstfs-pom/pom.xml</relativePath>
 	</parent>
 
 	<dependencies>
@@ -18,7 +19,6 @@
 			<artifactId>jstfs-common</artifactId>
 			<version>1.0.0</version>
 		</dependency>
-
 	</dependencies>
 
 </project>
