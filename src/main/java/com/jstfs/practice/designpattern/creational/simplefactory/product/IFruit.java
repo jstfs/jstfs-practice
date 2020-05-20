@@ -6,8 +6,6 @@ package com.jstfs.practice.designpattern.creational.simplefactory.product;
  */
 public interface IFruit {
 	void plant();
-
 	void grow();
-
 	void harvest();
 }

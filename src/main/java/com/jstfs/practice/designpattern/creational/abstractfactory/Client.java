@@ -12,7 +12,7 @@ import com.jstfs.practice.designpattern.creational.abstractfactory.product.tank.
  * 					兽族工厂↓				亡灵工厂↓
  * 				----------------------------------------------------> 种族
  * 	农民工厂-->	|	兽族苦工(Peon)		亡灵侍僧(Acolyte)
- * 	肉盾工厂-->	|	兽族牛头人(Tauren)	亡灵憎恶(Abomination)
+ * 	肉盾工厂-->	|	兽族牛头人(Tauren)		亡灵憎恶(Abomination)
  * 				v
  * 			         兵种
  * 
@@ -22,7 +22,7 @@ import com.jstfs.practice.designpattern.creational.abstractfactory.product.tank.
  * 所以综上:
  * 		1, 抽象工厂需要所有产品满足可以从两个维度来划分种类
  * 		2, 而工厂的选择就要看实际应用场景中哪个维度的产品经常一起使用了
- * 		3, 没有被选择为工厂的另一个维度上的产品需要具体相同的接口
+ * 		3, 没有被选择为工厂的另一个维度上的产品需要具有相同的接口
  * 		4, 与工厂方法的区别:就是工厂方法模式没有产品族的概念
  * 
  * @createBy jstfs

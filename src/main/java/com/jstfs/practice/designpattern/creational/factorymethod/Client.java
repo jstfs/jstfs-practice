@@ -10,8 +10,10 @@ import com.jstfs.practice.designpattern.creational.factorymethod.factory.Strawbe
  * 二维:每个工厂和自己生产的产品构成线条,然后多个这样的线条在同一个平面内相互平行
  * 
  * JDK中:
- *  	Iterable(迭代器工厂接口)		-->		Iterator(迭代器产品接口)
- *  	各种集合类(生产迭代器的具体工厂)	-->		各种集合类中的iterator()方法返回值(具体迭代器产品)	
+ *  	Iterable(迭代器工厂接口)		Iterator(迭代器产品接口)
+ *  		|									|
+ *  		v									v
+ *  	各种集合类(生产迭代器的具体工厂)	各种集合类中的iterator()方法返回的迭代器(具体迭代器产品)	
  *
  * @createBy jstfs
  * @createTime 2018-10-25 上午10:56:40

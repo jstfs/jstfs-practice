@@ -22,7 +22,7 @@ public class Client {
 		strawBerry.plant();
 		IFruit grape = FruitGardener.produce("grape");
 		grape.harvest();
-
+		
 		IFruit badFruit = FruitGardener.produce("orange");
 		badFruit.grow();
 		badFruit.plant();
