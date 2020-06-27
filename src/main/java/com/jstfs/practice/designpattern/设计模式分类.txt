@@ -1,0 +1,15 @@
+
+1, creational 创建模式
+
+	1.1> simple factory 简单工厂模式 
+	1.2> factory method 工厂方法模式
+	1.3> abstract factory 工厂方法模式
+	1.4> singleton 单例模式
+	1.5> builer 建造者模式
+	1.6> prototype 原型模式
+	
+2, structural 结构模式
+
+	2.1> adapter 适配器(转换器)模式
+	2.2> composite 合成模式
+	2.3> decorator 装饰模式
