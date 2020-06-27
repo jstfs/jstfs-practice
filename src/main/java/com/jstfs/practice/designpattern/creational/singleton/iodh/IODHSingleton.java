@@ -1,4 +1,4 @@
-package com.jstfs.practice.designpattern.creational.singleton.doublechecked;
+package com.jstfs.practice.designpattern.creational.singleton.iodh;
 
 /**
  * IODH: Initialization On Demand Holder

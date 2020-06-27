@@ -1,6 +1,8 @@
 package com.jstfs.practice.designpattern.creational.singleton.lazy;
 
 /**
+ * 懒汉模式
+ * 
  * 高并发的情况,同步方法会影响性能
  */
 public class Client {

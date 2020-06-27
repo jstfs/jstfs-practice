@@ -3,7 +3,7 @@ package com.jstfs.practice.designpattern.creational.prototype.deep;
 import com.jstfs.practice.designpattern.creational.prototype.Prototype;
 
 /**
- * 需要支持克隆自身的具体产品
+ * 需要克隆自身的具体产品
  * 
  * @createBy jstfs
  * @createTime 2020年5月24日 下午8:17:48
@@ -11,8 +11,8 @@ import com.jstfs.practice.designpattern.creational.prototype.Prototype;
 public class ConcreteProduct implements Prototype {
 	private int intProp = -1;
 	private String strProp = "NULL";
-	InnerRef refProp = new InnerRef();
-	
+	private InnerRef refProp = new InnerRef();
+
 	public int getIntProp() {
 		return intProp;
 	}

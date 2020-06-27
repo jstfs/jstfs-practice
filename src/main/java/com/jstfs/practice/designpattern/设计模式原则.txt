@@ -1,5 +1,5 @@
 
-总原则: 开闭原则(Open-Closed Principle)
+总原则: 开闭原则 (Open-Closed Principle)
 
 1, Single Responsibility Principle
 
@@ -24,8 +24,8 @@
 	
 5, Demeter Principle
 
-	迪米特法则,又叫做:最少知道原则(Least Knowledge Principle)
-	是Ian Holland在一个叫做迪米特的项目的设计中提出的.
+	迪米特法则,又叫做:最少知道原则 (Least Knowledge Principle)
+	是 Ian Holland 在一个叫做迪米特的项目的设计中提出的.
 	意思是一个类对自己依赖的类应该知道的越少越好.换句话就是只和最直接的朋友通讯,不要跟陌生人说话.
 
 6, Composite Reuse Principle
