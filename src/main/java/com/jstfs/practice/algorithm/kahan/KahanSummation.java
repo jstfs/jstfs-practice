@@ -1,10 +1,11 @@
 package com.jstfs.practice.algorithm.kahan;
+
 /**
  * Kahan求和算法
  * 
- * 由于浮点数进行加减的时候会出现大树吃小数的情况
- * 尤其是大量的浮点数累加的时候,为了不使精度丢失
- * 该算法将每次丢失的精度记录下来,在下一次累加时也加上去
+ * 	由于浮点数进行加减的时候会出现大树吃小数的情况
+ * 	尤其是大量的浮点数累加的时候,为了不使精度丢失
+ * 	该算法将每次丢失的精度记录下来,在下一次累加时也加上去
  * 
  * @createBy jstfs
  * @createTime 2020年7月25日 上午12:13:57
@@ -13,27 +14,38 @@ public class KahanSummation {
 	public static void main(String[] args) {
 		KahanSummation ks = new KahanSummation();
 		ks.kahan();
-		ks.testFloat1();
+		ks.testFloat();
 	}
 	
 	private void kahan() {
-		float kahan_sum = 0.0f;
-		float normal_sum = 0.0f;
-		float delta = 0.0f;
+		float kahan_sum = 0.0f;		//kahan求和算法计算的结果
+		float normal_sum = 0.0f;	//正常累加计算的结果
+		float delta = 0.0f;			//kahan求和算法中每次累加完所丢失的数据
+		
+		float added = 1.0f;			//每次需要累加的数
+		
 		for(int i = 1; i <= 16777218; i++) {
-			float added = 1.0f;		//当前需要加的数
-			float newAdded = added - delta;	//当前需要加的数与上一次的累加完之后丢失的数据之和
+			/**
+			 * 先将上一次计算后丢失的数据和本次需要累加的数据相加
+			 * 由于delta为负数,所以是做相减
+			 */
+			float newAdded = added - delta;
 			
 			normal_sum += added;
 			
 			float temp = kahan_sum + newAdded;	
-			delta = temp - kahan_sum - newAdded;	//计算本次累加所丢失的数据
+			delta = temp - kahan_sum - newAdded;	//本次累加后所丢失的数据
 			kahan_sum = temp;
 		}
 		
-		System.out.printf("delta: %,.23f\n", delta);	//当最后一次delta不为0的时候,累加结束后要考虑进去
-		System.out.printf("kahan_sum: %,.23f\n", kahan_sum);
-		System.out.printf("normal_sum: %,.23f\n", normal_sum);
+		if(delta != 0.0f) {
+			//累加完成之后,如果delat不是0,则需要累计到结果上
+			kahan_sum = kahan_sum - delta;
+		}
+		
+		System.out.printf("delta: 		%,.23f\n", delta);
+		System.out.printf("kahan_sum: 	%,.23f\n", kahan_sum);
+		System.out.printf("normal_sum: 	%,.23f\n", normal_sum);
 	}
 	
 	/**
@@ -53,9 +65,9 @@ public class KahanSummation {
 	 * 		20000003.0f,
 	 * 		20000007.0f,等等...
 	 * 		
-	 * 即使是上面的Kahan Summation算法也解决不了: (16777216.0f + 1.0f)结果准确的问题
+	 * 即使是上面的Kahan求和算法也解决不了: (16777216.0f + 1.0f)结果准确的问题
 	 */
-	private void testFloat1() {
+	private void testFloat() {
 		float f = 1.0f;
 		float sum = 0.0f;
 		for(int i = 1; i <= 16777217; i++) {
