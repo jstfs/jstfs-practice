@@ -6,7 +6,8 @@ import com.jstfs.common.utils.MyRandomUtils;
 
 /**
  * 冒泡排序:
- * 	找最大值逐步向后交换,可以提前退出
+ * 	每轮找最大值逐步向后交换
+ * 	可以提前退出
  * 	
  * 
  * 	1, 原地排序算法
@@ -27,7 +28,6 @@ public class BubbleSort {
 		int[] ary = MyRandomUtils.generateIntAry(size, size*3);
 		System.out.println("原数组:\t\t" + Arrays.toString(ary));
 		bs.sort(ary);
-		System.out.println(Arrays.toString(ary));
 	}
 	
 	public void sort(int[] ary) {
@@ -40,7 +40,7 @@ public class BubbleSort {
 		}
 		
 		int sumSwapTimes = 0;		//总交换次数
-		for(int i = 0; i < size - 1; i++) {	//冒泡的轮次可以少一次
+		for(int i = 0; i < size - 1; i++) {
 			boolean flag = true;	//提前退出冒泡的标识
 			int currSwapTimes = 0;	//本轮交换次数
 			for(int j = 0; j < size - i - 1; j++) {
@@ -57,10 +57,10 @@ public class BubbleSort {
 				}
 			}
 			
-			System.out.println("第" + (i + 1) + "轮冒泡后结果:\t" + Arrays.toString(ary) + " 本轮交换次数:" + currSwapTimes);
+			System.out.println("第" + (i + 1) + "轮排序后结果:\t" + Arrays.toString(ary) + " 本轮交换次数:" + currSwapTimes);
 			
 			if(flag && (i+1) < (size-1)) {
-				System.out.println("第" + (i + 1) + "轮冒泡后提前完成排序");
+				System.out.println("第" + (i + 1) + "轮排序后提前完成排序");
 				break;
 			}
 		}
