@@ -5,8 +5,8 @@ import com.jstfs.practice.designpattern.creational.prototype.Prototype;
 /**
  * 需要克隆自身的具体产品
  * 
- * @createBy jstfs
- * @createTime 2020年5月24日 下午8:17:48
+ * @createBy	落叶
+ * @createTime 	2020年5月24日 下午8:17:48
  */
 public class ConcreteProduct implements Prototype {
 	private int intProp = -1;

@@ -8,8 +8,8 @@ import com.jstfs.practice.algorithm.sort.quick.QuickSort;
 /**
  * 二分查找变体一: 查找第一个等于给定值的元素
  * 
- * @createBy jstfs
- * @createTime 2019-1-19 下午11:51:24
+ * @createBy 	落叶
+ * @createTime 	2019-1-19 下午11:51:24
  */
 public class BinarySearchForFirst {
 	private static QuickSort qs = new QuickSort();

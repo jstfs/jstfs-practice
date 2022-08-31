@@ -6,8 +6,8 @@ import com.jstfs.practice.datastructure.chain.SingleChain;
 /**
  * 队列的数组实现
  *
- * @createBy jstfs
- * @createTime 2018-11-27 上午12:21:11
+ * @createBy 	落叶
+ * @createTime 	2018-11-27 上午12:21:11
  */
 public class QueueChain implements IQueue {
 	private SingleChain datas = new SingleChain();

@@ -2,8 +2,8 @@ package com.jstfs.practice.designpattern.structural.decorator;
 /**
  * 具体的装饰者(海王),将动物的移动功能增强成使用游泳的方式来移动
  * 
- * @createBy jstfs
- * @createTime 2020年6月20日 下午8:15:49
+ * @createBy	落叶
+ * @createTime 	2020年6月20日 下午8:15:49
  */
 public class AnimalCanSwimDecorator extends AbstractDecorator {
 	public AnimalCanSwimDecorator(IAnimal animal) {

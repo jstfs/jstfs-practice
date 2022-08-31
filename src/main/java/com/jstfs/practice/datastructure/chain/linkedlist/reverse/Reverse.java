@@ -6,8 +6,8 @@ import com.jstfs.practice.datastructure.chain.SingleChain;
 /**
  * 单链表反转
  *
- * @createBy jstfs
- * @createTime 2018-10-26 上午12:51:23
+ * @createBy 	落叶
+ * @createTime 	2018-10-26 上午12:51:23
  */
 public class Reverse {
 	private static SingleChain chain1 = new SingleChain(10);	//初始化链表

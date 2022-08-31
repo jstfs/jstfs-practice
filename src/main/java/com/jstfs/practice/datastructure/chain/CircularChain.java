@@ -5,8 +5,8 @@ import org.apache.commons.lang3.StringUtils;
 /**
  * 循环链表
  * 
- * @createBy jstfs
- * @createTime 2018-10-25 上午11:14:35
+ * @createBy 	落叶
+ * @createTime 	2018-10-25 上午11:14:35
  */
 public class CircularChain {
 	private Node first; // 头节点

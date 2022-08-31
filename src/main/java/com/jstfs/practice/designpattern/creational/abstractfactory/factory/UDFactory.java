@@ -8,8 +8,8 @@ import com.jstfs.practice.designpattern.creational.abstractfactory.product.tank.
 /**
  * 不死族工厂,可以生产不死族不同种类的兵种
  *
- * @createBy jstfs
- * @createTime 2018-10-25 上午10:38:01
+ * @createBy	落叶
+ * @createTime 	2018-10-25 上午10:38:01
  */
 public class UDFactory implements IFactory {
 	@Override

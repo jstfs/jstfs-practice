@@ -1,8 +1,8 @@
 package com.jstfs.practice.designpattern.creational.factorymethod.product;
 
 /**
- * @createBy jstfs
- * @createTime 2018-10-25 上午10:55:32
+ * @createBy	落叶
+ * @createTime 	2018-10-25 上午10:55:32
  */
 public class Grape implements IFruit {
 	private boolean seedless;	//是否无籽

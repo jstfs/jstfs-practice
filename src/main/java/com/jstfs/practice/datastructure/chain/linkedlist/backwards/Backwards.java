@@ -10,8 +10,8 @@ import com.jstfs.practice.datastructure.chain.SingleChain;
  * A 先向前走 k-1 步,然后两个指针同时向前一步一步走
  * 当 A 的下一个节点为 null 时,此时 B 就是倒数第 k 个节点
  * 
- * @createBy jstfs
- * @createTime 2018-10-26 上午12:51:42
+ * @createBy 	落叶
+ * @createTime 	2018-10-26 上午12:51:42
  */
 public class Backwards {
 	private static SingleChain chain = new SingleChain(7);	//初始化链表

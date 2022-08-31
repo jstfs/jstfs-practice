@@ -38,8 +38,8 @@ import com.jstfs.practice.algorithm.sort.quick.QuickSort;
  * 		当所有数据都分布在一个桶中的时候,即 m=1,那么就退化成 O(N + N*log₂N)
  * 		忽略常数 N,则相当于快排的 O(N*log₂N),这就是最坏时间复杂度.
  * 
- * @createBy jstfs
- * @createTime 2019-1-6 下午1:25:27
+ * @createBy 	落叶
+ * @createTime 	2019-1-6 下午1:25:27
  */
 public class BucketSort {
 	private static QuickSort qs = new QuickSort();

@@ -3,8 +3,8 @@ package com.jstfs.practice.designpattern.creational.abstractfactory.product.tank
 /**
  * 兽族肉盾(牛头人)
  *
- * @createBy jstfs
- * @createTime 2018-10-25 上午10:36:26
+ * @createBy	落叶
+ * @createTime 	2018-10-25 上午10:36:26
  */
 public class Tauren implements ITank {
 

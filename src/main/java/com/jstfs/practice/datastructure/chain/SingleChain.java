@@ -7,8 +7,8 @@ import com.jstfs.common.utils.MyRandomUtils;
 /**
  * 单链表
  * 
- * @createBy jstfs
- * @createTime 2018-10-25 上午11:14:35
+ * @createBy 	落叶
+ * @createTime 	2018-10-25 上午11:14:35
  */
 public class SingleChain {
 	private Node first;		//头节点

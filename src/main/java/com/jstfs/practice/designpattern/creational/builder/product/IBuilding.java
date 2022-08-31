@@ -3,8 +3,8 @@ package com.jstfs.practice.designpattern.creational.builder.product;
 /**
  * 建筑物接口
  *
- * @createBy jstfs
- * @createTime 2020年5月21日 下午1:26:25
+ * @createBy	落叶
+ * @createTime 	2020年5月21日 下午1:26:25
  */
 public interface IBuilding {
 	String introduce();

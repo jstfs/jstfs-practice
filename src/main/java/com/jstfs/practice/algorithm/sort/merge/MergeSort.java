@@ -36,8 +36,8 @@ import com.jstfs.common.utils.MyRandomUtils;
  * 		所以:
  * 			T(N) = C*N + N*log₂N
  *
- * @createBy jstfs
- * @createTime 2018-12-6 下午3:49:05
+ * @createBy 	落叶
+ * @createTime 	2018-12-6 下午3:49:05
  */
 public class MergeSort {
 	private static int size = 15;

@@ -3,8 +3,8 @@ package com.jstfs.practice.designpattern.creational.abstractfactory.product.farm
 /**
  * 不死族农民(侍僧)
  *
- * @createBy jstfs
- * @createTime 2018-10-25 上午10:34:58
+ * @createBy	落叶
+ * @createTime 	2018-10-25 上午10:34:58
  */
 public class Acolyte implements IFarmer {
 	@Override

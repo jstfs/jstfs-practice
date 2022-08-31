@@ -3,8 +3,8 @@ package com.jstfs.practice.datastructure.queue;
 /**
  * 队列的数组实现
  *
- * @createBy jstfs
- * @createTime 2018-11-26 上午12:31:06
+ * @createBy 	落叶
+ * @createTime 	2018-11-26 上午12:31:06
  */
 public class QueueArray implements IQueue {
 	private Object[] datas = new Object[10];

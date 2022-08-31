@@ -24,8 +24,8 @@ import com.jstfs.practice.datastructure.stack.StackArray;
  * 缺少:
  * 		四则运算表达式的合法性校验
  *
- * @createBy jstfs
- * @createTime 2018-10-29 上午01:01:30
+ * @createBy	落叶
+ * @createTime 	2018-10-29 上午01:01:30
  */
 public class CalcExpression {
 	public static Map<String, Integer> operators = new HashMap<String, Integer>();	//value为运算符的优先级,0表示优先级最高

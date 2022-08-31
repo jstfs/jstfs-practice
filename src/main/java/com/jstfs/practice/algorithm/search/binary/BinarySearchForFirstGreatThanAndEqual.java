@@ -8,8 +8,8 @@ import com.jstfs.practice.algorithm.sort.quick.QuickSort;
 /**
  * 二分查找变体二: 查找第一个大于等于给定值的元素
  * 
- * @createBy jstfs
- * @createTime 2019-1-20 上午12:18:45
+ * @createBy 	落叶
+ * @createTime 	2019-1-20 上午12:18:45
  */
 public class BinarySearchForFirstGreatThanAndEqual {
 	private static QuickSort qs = new QuickSort();

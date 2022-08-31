@@ -15,8 +15,8 @@ import com.jstfs.practice.designpattern.creational.factorymethod.factory.Strawbe
  *  		v									v
  *  	各种集合类(生产迭代器的具体工厂)	各种集合类中的iterator()方法返回的迭代器(具体迭代器产品)	
  *
- * @createBy jstfs
- * @createTime 2018-10-25 上午10:56:40
+ * @createBy	落叶
+ * @createTime 	2018-10-25 上午10:56:40
  */
 public class Client {
 	public static void main(String[] args) {

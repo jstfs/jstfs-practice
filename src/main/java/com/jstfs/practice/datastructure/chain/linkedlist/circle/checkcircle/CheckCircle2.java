@@ -22,8 +22,8 @@ import com.jstfs.practice.datastructure.chain.SingleChain;
  * 
  * 时间复杂度为: O(N)
  *
- * @createBy jstfs
- * @createTime 2018-10-28 下午11:48:52
+ * @createBy 	落叶
+ * @createTime 	2018-10-28 下午11:48:52
  */
 public class CheckCircle2 {
 	private static SingleChain chain = new SingleChain(8);	//初始化链表

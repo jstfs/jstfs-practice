@@ -2,8 +2,8 @@ package com.jstfs.practice.designpattern.structural.decorator;
 /**
  * 人类
  * 
- * @createBy jstfs
- * @createTime 2020年6月20日 下午5:23:56
+ * @createBy	落叶
+ * @createTime 	2020年6月20日 下午5:23:56
  */
 public class Human implements IAnimal {
 

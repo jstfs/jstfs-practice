@@ -8,8 +8,8 @@ import com.jstfs.practice.designpattern.creational.prototype.shallow.ConcretePro
  * 对于引用类型的成员变量只克隆引用,不克隆引用指向的对象
  * Object的clone()方法就是浅克隆
  * 
- * @createBy jstfs
- * @createTime 2020年5月24日 下午3:00:05
+ * @createBy	落叶
+ * @createTime 	2020年5月24日 下午3:00:05
  */
 public class Client implements Cloneable {
 	public static void main(String[] args) throws CloneNotSupportedException {

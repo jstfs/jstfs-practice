@@ -25,8 +25,8 @@ import com.jstfs.practice.designpattern.creational.abstractfactory.product.tank.
  * 		3, 没有被选择为工厂的另一个维度上的产品需要具有相同的接口
  * 		4, 与工厂方法的区别:就是工厂方法模式没有产品族的概念
  * 
- * @createBy jstfs
- * @createTime 2018-10-25 上午10:43:46
+ * @createBy	落叶
+ * @createTime 	2018-10-25 上午10:43:46
  */
 public class Client {
 	public static void main(String[] args) {

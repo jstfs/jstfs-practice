@@ -3,8 +3,8 @@ package com.jstfs.practice.datastructure.stack;
 /**
  * 栈的数组实现
  *
- * @createBy jstfs
- * @createTime 2018-10-29 上午12:59:11
+ * @createBy	落叶
+ * @createTime 	2018-10-29 上午12:59:11
  */
 public class StackArray implements IStack {
 	private Object[] datas = new Object[10];	//初始容量,10个

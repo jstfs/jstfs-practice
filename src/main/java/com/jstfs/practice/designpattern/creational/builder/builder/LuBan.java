@@ -5,8 +5,8 @@ import com.jstfs.practice.designpattern.creational.builder.product.QuadrangleDwe
 /**
  * 鲁班
  *
- * @createBy jstfs
- * @createTime 2020年5月21日 下午1:31:57
+ * @createBy	落叶
+ * @createTime 	2020年5月21日 下午1:31:57
  */
 public class LuBan extends AbstractBuilder {
 	public LuBan() {

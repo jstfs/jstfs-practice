@@ -5,8 +5,8 @@ package com.jstfs.practice.designpattern.creational.builder.product;
  * Quadrangle:[ˈkwɑːdræŋɡl],四方院子
  * Dwelling:[ˈdwelɪŋ],住宅住所
  * 
- * @createBy jstfs
- * @createTime 2020年5月21日 下午1:29:54
+ * @createBy	落叶
+ * @createTime 	2020年5月21日 下午1:29:54
  */
 public class QuadrangleDwelling extends AbstractBuilding {
 	public QuadrangleDwelling(String buildingName) {

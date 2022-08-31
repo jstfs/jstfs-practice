@@ -10,8 +10,8 @@ import com.jstfs.practice.datastructure.chain.SingleChain;
  * 当 fast 下一个节点为 null 时,则该链表的长度为偶数, slow 节点和 slow 的下一个节点都可以作为中间节点
  * 当 fast 的下下一个节点为 null 时,则该链表的长度为奇数, slow 的下一个节点就是该链表的中间节点
  * 
- * @createBy jstfs
- * @createTime 2018-10-23 下午7:01:12
+ * @createBy 	落叶
+ * @createTime 	2018-10-23 下午7:01:12
  */
 public class Intermediate {
 	private static SingleChain chain = new SingleChain(11);	//初始化链表

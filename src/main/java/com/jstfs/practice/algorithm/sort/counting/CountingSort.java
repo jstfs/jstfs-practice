@@ -31,8 +31,8 @@ import com.jstfs.common.utils.MyRandomUtils;
  * 		平均时间复杂度: O(N)
  * 		最坏时间复杂度: O(N)
  * 
- * @createBy jstfs
- * @createTime 2019-1-18 下午2:09:34
+ * @createBy 	落叶
+ * @createTime 	2019-1-18 下午2:09:34
  */
 public class CountingSort {
 	private static int size = 2000;	//数据量

@@ -6,8 +6,8 @@ import com.jstfs.practice.designpattern.creational.abstractfactory.product.tank.
 /**
  * 工厂接口
  *
- * @createBy jstfs
- * @createTime 2018-10-25 上午10:36:57
+ * @createBy	落叶
+ * @createTime 	2018-10-25 上午10:36:57
  */
 public interface IFactory {
 	IFarmer createFarmer();

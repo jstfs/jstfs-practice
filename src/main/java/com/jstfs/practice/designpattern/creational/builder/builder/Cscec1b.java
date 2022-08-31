@@ -5,8 +5,8 @@ import com.jstfs.practice.designpattern.creational.builder.product.Skyscraper;
 /**
  * 中国建筑一局
  *
- * @createBy jstfs
- * @createTime 2020年5月23日 上午9:27:59
+ * @createBy	落叶
+ * @createTime 	2020年5月23日 上午9:27:59
  */
 public class Cscec1b extends AbstractBuilder {
 	public Cscec1b() {

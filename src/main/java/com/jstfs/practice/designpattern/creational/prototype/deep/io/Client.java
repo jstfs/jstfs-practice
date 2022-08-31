@@ -9,8 +9,8 @@ import com.jstfs.practice.designpattern.creational.prototype.deep.io.ConcretePro
  * 对于一些不需要或者不能克隆的类型,比如Thread,Socket类型,可以使用transient关键字进行标识
  * 标识之后就不会序列化到流中,然后从流中读出时该变量的值默认是它所属数据类型的初始值.比如int类型就是0,String类型就是null.
  * 
- * @createBy jstfs
- * @createTime 2020年5月24日 下午3:00:05
+ * @createBy	落叶
+ * @createTime 	2020年5月24日 下午3:00:05
  */
 public class Client implements Cloneable {
 	public static void main(String[] args) throws CloneNotSupportedException {

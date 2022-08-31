@@ -3,8 +3,8 @@ package com.jstfs.practice.algorithm.search.binary;
 /**
  * 使用二分查找法计算根号6的近似值,精确到小数点后6位
  *
- * @createBy jstfs
- * @createTime 2019-1-19 下午2:22:00
+ * @createBy 	落叶
+ * @createTime 	2019-1-19 下午2:22:00
  */
 public class GetRadicalNumber {
 	private static int number = 6;	//目标数据,求该数据的 pow次方根

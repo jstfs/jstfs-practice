@@ -1,8 +1,8 @@
 package com.jstfs.practice.designpattern.creational.factorymethod.product;
 
 /**
- * @createBy jstfs
- * @createTime 2018-10-25 上午10:55:38
+ * @createBy	落叶
+ * @createTime 	2018-10-25 上午10:55:38
  */
 public class Apple implements IFruit {
 	private int treeAge;	//树龄

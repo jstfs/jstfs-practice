@@ -5,8 +5,8 @@ import com.jstfs.practice.designpattern.creational.builder.product.IBuilding;
 /**
  * 建造者接口
  *
- * @createBy jstfs
- * @createTime 2020年5月21日 下午2:00:56
+ * @createBy	落叶
+ * @createTime 	2020年5月21日 下午2:00:56
  */
 public abstract class AbstractBuilder {
 	protected IBuilding building;

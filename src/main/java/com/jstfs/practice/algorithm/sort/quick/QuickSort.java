@@ -38,8 +38,8 @@ import com.jstfs.common.utils.MyRandomUtils;
  * 		平均时间复杂度: O(N*log₂N)
  * 		最坏时间复杂度: O(N²)
  * 
- * @createBy jstfs
- * @createTime 2018-12-6 下午11:35:08
+ * @createBy 	落叶
+ * @createTime 	2018-12-6 下午11:35:08
  */
 public class QuickSort {
 	private static int size = 15;

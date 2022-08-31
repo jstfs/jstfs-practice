@@ -9,8 +9,8 @@ import com.jstfs.practice.designpattern.creational.simplefactory.product.Strawbe
 /**
  * 园丁(工厂类):可以根据客户需求来生产所有水果
  *
- * @createBy jstfs
- * @createTime 2018-10-24 上午10:53:22
+ * @createBy	落叶
+ * @createTime 	2018-10-24 上午10:53:22
  */
 public class FruitGardener {
 	public static IFruit produce(String fruitName) {

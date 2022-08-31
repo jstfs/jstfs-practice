@@ -4,8 +4,8 @@ package com.jstfs.practice.designpattern.creational.builder.product;
  * 摩天大楼
  * Skyscraper:[ˈskaɪskreɪpər]
  * 
- * @createBy jstfs
- * @createTime 2020年5月21日 下午1:27:47
+ * @createBy	落叶
+ * @createTime 	2020年5月21日 下午1:27:47
  */
 public class Skyscraper extends AbstractBuilding {
 	public Skyscraper(String buildingName) {

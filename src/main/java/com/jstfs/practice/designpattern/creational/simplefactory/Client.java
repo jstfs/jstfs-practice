@@ -11,8 +11,8 @@ import com.jstfs.practice.designpattern.creational.simplefactory.product.IFruit;
  * 		DateFormat
  * 		NumberFormat
  * 
- * @createBy jstfs
- * @createTime 2018-10-25 上午10:55:00
+ * @createBy	落叶
+ * @createTime 	2018-10-25 上午10:55:00
  */
 public class Client {
 	public static void main(String[] args) {

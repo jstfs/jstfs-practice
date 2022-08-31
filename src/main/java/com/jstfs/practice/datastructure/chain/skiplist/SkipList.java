@@ -22,8 +22,8 @@ package com.jstfs.practice.datastructure.chain.skiplist;
  *		结果是: 数量级从100到10000000时,都是 x=4 时,时间复杂度最低
  *		所以我此处的例子中会以每4个节点提取一个到上一个层索引.
  *		
- * @createBy jstfs
- * @createTime 2019-1-21 下午5:18:31
+ * @createBy 	落叶
+ * @createTime 	2019-1-21 下午5:18:31
  */
 public class SkipList<T extends Comparable<? super T>> {
 //	private int indexLevel = 0;

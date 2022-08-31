@@ -6,8 +6,8 @@ import com.jstfs.practice.datastructure.chain.SingleChain;
 /**
  * 栈的链表实现
  *
- * @createBy jstfs
- * @createTime 2018-10-29 上午12:59:27
+ * @createBy	落叶
+ * @createTime 	2018-10-29 上午12:59:27
  */
 public class StackChain implements IStack {
 	private SingleChain datas = new SingleChain();

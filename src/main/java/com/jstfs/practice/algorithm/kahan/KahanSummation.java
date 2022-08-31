@@ -7,8 +7,8 @@ package com.jstfs.practice.algorithm.kahan;
  * 	尤其是大量的浮点数累加的时候,为了不使精度丢失
  * 	该算法将每次丢失的精度记录下来,在下一次累加时也加上去
  * 
- * @createBy jstfs
- * @createTime 2020年7月25日 上午12:13:57
+ * @createBy 	落叶
+ * @createTime 	2020年7月25日 上午12:13:57
  */
 public class KahanSummation {
 	public static void main(String[] args) {

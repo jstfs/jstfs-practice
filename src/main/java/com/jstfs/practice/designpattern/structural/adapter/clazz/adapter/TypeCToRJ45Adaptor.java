@@ -8,8 +8,8 @@ import com.jstfs.practice.designpattern.structural.adapter.clazz.target.ITypeC;
  * 
  * 类的适配器
  *
- * @createBy jstfs
- * @createTime 2020年6月11日 下午3:14:15
+ * @createBy	落叶
+ * @createTime 	2020年6月11日 下午3:14:15
  */
 public class TypeCToRJ45Adaptor extends RJ45Wire implements ITypeC {
 	

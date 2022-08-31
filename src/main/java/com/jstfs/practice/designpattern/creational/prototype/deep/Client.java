@@ -7,8 +7,8 @@ import com.jstfs.practice.designpattern.creational.prototype.deep.ConcreteProduc
  * 
  * 对于引用类型的成员变量指向的对象也进行克隆,这样就要求该引用类型的类也实现Cloneable接口
  * 
- * @createBy jstfs
- * @createTime 2020年5月24日 下午3:00:05
+ * @createBy	落叶
+ * @createTime 	2020年5月24日 下午3:00:05
  */
 public class Client implements Cloneable {
 	public static void main(String[] args) throws CloneNotSupportedException {

@@ -8,8 +8,8 @@ import com.jstfs.practice.designpattern.structural.adapter.clazz.target.ITypeC;
  * 
  * 与装饰模式相比,适配器更倾向于接口的替换
  * 
- * @createBy jstfs
- * @createTime 2020年6月13日 下午1:42:03
+ * @createBy	落叶
+ * @createTime 	2020年6月13日 下午1:42:03
  */
 public class Client {
 	public static void main(String[] args) {

@@ -10,8 +10,8 @@ import com.jstfs.practice.datastructure.chain.SingleChain;
  * 将其中一个链表的尾部于另一个链表的头部相连,如果有相交节点,则会形成环,那么只要检查环是否存在就可以判断
  * 如果没有环,则一定没有相交
  * 
- * @createBy jstfs
- * @createTime 2018-10-29 上午12:07:25
+ * @createBy	落叶
+ * @createTime 	2018-10-29 上午12:07:25
  */
 public class Intersection {
 	private static SingleChain chainA = new SingleChain("A", 3);	//初始化链表

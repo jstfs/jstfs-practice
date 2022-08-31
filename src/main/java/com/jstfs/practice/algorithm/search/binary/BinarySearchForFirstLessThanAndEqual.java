@@ -8,8 +8,8 @@ import com.jstfs.practice.algorithm.sort.quick.QuickSort;
 /**
  * 二分查找变体二: 查找最后一个小于等于给定值的元素
  * 
- * @createBy jstfs
- * @createTime 2019-1-20 上午11:21:19
+ * @createBy 	落叶
+ * @createTime 	2019-1-20 上午11:21:19
  */
 public class BinarySearchForFirstLessThanAndEqual {
 	private static QuickSort qs = new QuickSort();

@@ -12,8 +12,8 @@ import com.jstfs.practice.designpattern.structural.adapter.obj.target.ITypeC;
  * JDK中:
  * 		InputStreamReader
  * 
- * @createBy jstfs
- * @createTime 2020年6月13日 下午1:42:03
+ * @createBy	落叶
+ * @createTime 	2020年6月13日 下午1:42:03
  */
 public class Client {
 	public static void main(String[] args) {

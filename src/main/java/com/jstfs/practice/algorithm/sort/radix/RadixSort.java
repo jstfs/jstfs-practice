@@ -24,8 +24,8 @@ import com.jstfs.practice.algorithm.sort.counting.CountingSort;
  * 		平均时间复杂度: O(N)
  * 		最坏时间复杂度: O(N)
  * 
- * @createBy jstfs
- * @createTime 2019-1-18 下午2:11:10
+ * @createBy 	落叶
+ * @createTime 	2019-1-18 下午2:11:10
  */
 public class RadixSort {
 	private static int size = 500;		//数据量

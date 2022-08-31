@@ -9,8 +9,8 @@ package com.jstfs.practice.designpattern.creational.singleton.doublechecked;
  * 	1, 阻止内存重排序,见: DoubleCheckVolatileSingleton.java
  *  2, 将内存重排序带来的过程中的 "instance != null" 不要让外部线程"看到".有一个技巧就是 IODH,见: IODHSingleton.java
  *  
- * @createBy jstfs
- * @createTime 2018-10-25 上午10:52:29 
+ * @createBy	落叶
+ * @createTime 	2018-10-25 上午10:52:29 
  */
 public class DoubleCheckSingleton {
 	private static DoubleCheckSingleton instance;

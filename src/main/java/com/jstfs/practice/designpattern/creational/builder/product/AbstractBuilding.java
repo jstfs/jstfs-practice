@@ -1,7 +1,7 @@
 package com.jstfs.practice.designpattern.creational.builder.product;
 /**
- * @createBy jstfs
- * @createTime 2020年5月23日 上午9:41:32
+ * @createBy	落叶
+ * @createTime 	2020年5月23日 上午9:41:32
  */
 public abstract class AbstractBuilding implements IBuilding {
 	protected String buildingName;		//名字

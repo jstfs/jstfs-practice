@@ -7,8 +7,8 @@ import org.apache.commons.collections.CollectionUtils;
 import org.apache.commons.lang3.StringUtils;
 
 /**
- * @createBy jstfs
- * @createTime 2018-10-25 上午11:06:51
+ * @createBy 	落叶
+ * @createTime 	2018-10-25 上午11:06:51
  */
 public class Node {
 	private Object data;	//节点中保存的数据

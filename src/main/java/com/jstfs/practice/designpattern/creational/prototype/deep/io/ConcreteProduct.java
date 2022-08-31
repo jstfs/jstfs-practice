@@ -10,8 +10,8 @@ import java.io.Serializable;
 /**
  * 需要克隆自身的具体产品
  * 
- * @createBy jstfs
- * @createTime 2020年5月24日 下午8:17:48
+ * @createBy	落叶
+ * @createTime 	2020年5月24日 下午8:17:48
  */
 public class ConcreteProduct implements Serializable {
 	private static final long serialVersionUID = -425031115519733129L;

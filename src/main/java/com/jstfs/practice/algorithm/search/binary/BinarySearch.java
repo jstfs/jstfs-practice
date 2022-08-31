@@ -14,8 +14,8 @@ import com.jstfs.practice.algorithm.sort.quick.QuickSort;
  * 
  *	时间复杂度: O(log₂N)
  * 
- * @createBy jstfs
- * @createTime 2019-1-19 上午11:33:26
+ * @createBy 	落叶
+ * @createTime 	2019-1-19 上午11:33:26
  */
 public class BinarySearch {
 	private static QuickSort qs = new QuickSort();

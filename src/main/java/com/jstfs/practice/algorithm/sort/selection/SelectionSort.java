@@ -17,8 +17,8 @@ import com.jstfs.common.utils.MyRandomUtils;
  * 		平均时间复杂度: O(N²)
  * 		最坏时间复杂度: O(N²)
  * 
- * @createBy jstfs
- * @createTime 2018-12-4 上午12:06:39
+ * @createBy 	落叶
+ * @createTime 	2018-12-4 上午12:06:39
  */
 public class SelectionSort {
 	private static int size = 10;

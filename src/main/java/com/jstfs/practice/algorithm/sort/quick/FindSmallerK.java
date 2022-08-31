@@ -11,8 +11,8 @@ import com.jstfs.common.utils.MyRandomUtils;
  * 平均时间复杂度: O(N)
  * 最坏时间复杂度: O(N²)
  *
- * @createBy jstfs
- * @createTime 2018-12-10 上午1:45:56
+ * @createBy 	落叶
+ * @createTime 	2018-12-10 上午1:45:56
  */
 public class FindSmallerK {
 	private static QuickSort qs = new QuickSort();
