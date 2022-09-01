@@ -23,7 +23,11 @@ import com.jstfs.common.utils.MyStringUtils;
  * 		4, 如果遇到右括号,则栈顶符号依次出栈并输出,直到碰到左括号(出栈但不输出)
  * 
  * 	计算后缀表达式的结果:
- * 		1
+ * 		1, 从左到右,遇到运算数直接入栈(数据栈)
+ * 		2, 遇到运算符则从栈顶取出两个运算数进行计算,并将计算结果压栈
+ * 			2.1, 如果是减法运算,则后取出的是被减数
+ * 			2.2, 如果是除法运算,则后取出的是被除数
+ * 		3, 最终的得数就是原四则运算的结果
  * 
  * @createBy 	落叶
  * @createTime 	2022-08-31 下午18:56:50
@@ -51,7 +55,7 @@ public class RPNExpression {
 	};
 	
 	public static void main(String[] args) {
-		String originExp = "12+((21+3)*4)-15";
+		String originExp = "122+((21+3)*4)/17";
 		
 		RPNExpression rpn = new RPNExpression();
 		System.out.println("原表达式:\t" + originExp);
@@ -61,13 +65,18 @@ public class RPNExpression {
 		System.out.println("计算结果:\t" + originExp + " = " + result);
 	}
 	
+	/**
+	 * 转RPN表达式
+	 * 
+	 * @param exp	正常的中缀表达式
+	 */
 	public String toRPNExp(String exp) {
 		StringBuilder rpnExp = new StringBuilder();
 		if(MyStringUtils.isEmpty(exp)) {
 			throw new RuntimeException("exp不能为空");
 		}
 		
-		Stack<Character> operatorStack = new Stack<Character>();
+		Stack<Character> operatorStack = new Stack<Character>();	//符号栈
 		
 		char[] charAry = exp.toCharArray();
 		String tempOperNum = ""; 
@@ -141,8 +150,36 @@ public class RPNExpression {
 	}
 	
 	private double caculateRPN(String rpnExp) {
-		double result = 0;
+		Stack<Double> dataStack = new Stack<Double>();	//数据栈
 		
-		return result;
+		String[] elmtAry = rpnExp.split(" ");
+		Double data1 = null;
+		Double data2 = null;
+		for (int i = 0; i < elmtAry.length; i++) {
+			if(elmtAry[i].matches("([1-9]\\d*\\.?\\d*)|(0\\.\\d*[1-9])")) {
+				//是运算数,则入栈
+				//这个正则不匹配整数的前导0(比如:0123.45)和小数的后导0(比如:123.450
+				dataStack.push(Double.parseDouble(elmtAry[i]));
+			} else if(elmtAry[i].equals("+")) {
+				data1 = dataStack.pop();
+				data2 = dataStack.pop();
+				dataStack.push(data1 + data2);
+			} else if(elmtAry[i].equals("-")) {
+				data1 = dataStack.pop();
+				data2 = dataStack.pop();	//被减数
+				dataStack.push(data2 - data1);
+			} else if(elmtAry[i].equals("*")) {
+				data1 = dataStack.pop();
+				data2 = dataStack.pop();
+				dataStack.push(data1 * data2);
+			} else if(elmtAry[i].equals("/")) {
+				data1 = dataStack.pop();
+				data2 = dataStack.pop();	//被除数
+				dataStack.push(data2 / data1);
+			}
+		}
+		return dataStack.pop();
 	}
+	
+	
 }
