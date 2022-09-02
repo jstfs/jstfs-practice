@@ -4,14 +4,14 @@ import com.jstfs.common.utils.MyRandomUtils;
 
 /**
  * 迷宫问题:
- * 	打印出从起点找到终点的路线, 但这个和探路的策略有关,本例中采用[下-右-上-左]的优先级
+ * 	打印出从起点找到终点的路线,但这个和探路的策略有关,本例中采用[下-右-上-左]的优先级
  * 
  * @createBy	落叶
  * @createTime	2022年9月1日 下午7:18:57
  */
 public class MazePuzzle {
-	private int row = 10;			//迷宫行数
-	private int column = 18;		//迷宫列数
+	private int row 	= 10;		//迷宫行数
+	private int column 	= 18;		//迷宫列数
 	private int totalCell = (row-2) * (column-2);	//迷宫中的总格子数
 	private final char obstacleChar	= '障';	//障碍物
 	private final char wallChar 	= '墙';	//围墙
