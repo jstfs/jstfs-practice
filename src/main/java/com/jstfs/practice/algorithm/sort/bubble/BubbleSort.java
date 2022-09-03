@@ -2,10 +2,11 @@ package com.jstfs.practice.algorithm.sort.bubble;
 
 import java.util.Arrays;
 
+import com.jstfs.common.utils.MyDateUtils;
 import com.jstfs.common.utils.MyRandomUtils;
 
 /**
- * 冒泡排序:
+ * 冒泡排序: 使用[交换]来排序
  * 	每轮找最大值逐步向后交换
  * 	可以提前退出
  * 	
@@ -21,13 +22,17 @@ import com.jstfs.common.utils.MyRandomUtils;
  * @createTime 	2018-12-3 下午10:59:24
  */
 public class BubbleSort {
-	private static int size = 12;
+	private static int size = 20;
 	
 	public static void main(String[] args) {
 		BubbleSort bs = new BubbleSort();
-		int[] ary = MyRandomUtils.generateIntAry(size, size*3);
+		MyRandomUtils.setSeed(System.currentTimeMillis());
+		int[] ary = MyRandomUtils.generateIntAry(size, 1, size*4);
 		System.out.println("原数组:\t\t" + Arrays.toString(ary));
+		
+		System.out.println("开始时间:" + MyDateUtils.getNowStr());
 		bs.sort(ary);
+		System.out.println("结束时间:" + MyDateUtils.getNowStr());
 	}
 	
 	public void sort(int[] ary) {
@@ -43,10 +48,12 @@ public class BubbleSort {
 		for(int i = 0; i < size - 1; i++) {
 			boolean flag = true;	//提前退出冒泡的标识
 			int currSwapTimes = 0;	//本轮交换次数
+			int tmp = 0;			//交换值的临时变量
+			
 			for(int j = 0; j < size - i - 1; j++) {
 				if(ary[j] > ary[j+1]) {
 					//交换
-					int tmp = ary[j];
+					tmp = ary[j];
 					ary[j] = ary[j+1];
 					ary[j+1] = tmp;
 					
@@ -57,9 +64,10 @@ public class BubbleSort {
 				}
 			}
 			
-			System.out.println("第" + (i + 1) + "轮排序后结果:\t" + Arrays.toString(ary) + " 本轮交换次数:" + currSwapTimes);
+			System.out.print("第" + (i + 1) + "轮排序后结果:\t" + Arrays.toString(ary));
+			System.out.println(" 本轮交换次数:" + currSwapTimes);
 			
-			if(flag && (i+1) < (size-1)) {
+			if(flag && (i+1) < (size - 1)) {
 				System.out.println("第" + (i + 1) + "轮排序后提前完成排序");
 				break;
 			}
@@ -67,6 +75,6 @@ public class BubbleSort {
 		
 		System.out.println();
 		System.out.println("满有序度:" + (size * (size - 1) / 2));
-		System.out.println("交换次数(逆序度):" + sumSwapTimes);
+		System.out.println("交换次数:" + sumSwapTimes);
 	}
 }
