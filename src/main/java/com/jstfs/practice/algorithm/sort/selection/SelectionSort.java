@@ -27,7 +27,7 @@ public class SelectionSort {
 	public static void main(String[] args) {
 		SelectionSort ss = new SelectionSort();
 		MyRandomUtils.setSeed(System.currentTimeMillis());
-		int[] ary = MyRandomUtils.generateIntAry(size, size*4);
+		int[] ary = MyRandomUtils.generateIntAry(size, 1, 4 * size);
 		System.out.println("原数组:\t\t" + Arrays.toString(ary));
 		
 		System.out.println("开始时间:" + MyDateUtils.getNowStr());

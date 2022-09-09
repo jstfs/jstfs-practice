@@ -6,6 +6,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import com.jstfs.common.utils.MyCollecitonUtils;
 import com.jstfs.common.utils.MyRandomUtils;
 import com.jstfs.practice.algorithm.sort.quick.QuickSort;
 
@@ -113,8 +114,8 @@ public class BucketSort {
 	}
 	
 	private void quickSortToBucket(List<Integer> bucket) {
-		Integer[] ary = bucket.toArray(new Integer[bucket.size()]);
-		qs.sort(ary, true);
+		int[] ary = MyCollecitonUtils.intListToAry(bucket);
+		qs.sort(ary, 0, ary.length - 1);
 		//bucket = Arrays.asList(ary);	//不能用这种方式,Arrays.asList()方法是重新创建了一个 List,和入参 bucket 指向的 List 的没有关系
 		for(int i = 0; i < ary.length; i++) {
 			bucket.set(i, ary[i]);

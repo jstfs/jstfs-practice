@@ -1,16 +1,14 @@
 package com.jstfs.practice.algorithm.sort.merge;
 
-import java.util.Arrays;
-
 import com.jstfs.common.utils.MyArrayUtils;
+import com.jstfs.common.utils.MyDateUtils;
 import com.jstfs.common.utils.MyRandomUtils;
 
 /**
  * 归并排序: 
- * 		先分区,一直分区,直到分区只有1个或者2个元素时就直接比较大小
- * 		然后逐层两两分区合并(使用递归),合并的过程才开始排序,当合并回最初的大数组时,也就是有序的了
- * 
- * 		与快速排序很像,但区别是:先分区,再集中排序(合并时)
+ * 	边分区边排序
+ * 	某个区剩余1个或2个元素的时候就开始排序
+ * 	某个区的两个部分都排好序后就合并
  * 
  * 	1, 非原地排序算法(空间复杂度O(N))
  * 	2, 稳定的排序算法
@@ -40,67 +38,77 @@ import com.jstfs.common.utils.MyRandomUtils;
  * @createTime 	2018-12-6 下午3:49:05
  */
 public class MergeSort {
-	private static int size = 15;
+	private static int size = 4000000;
 	
 	public static void main(String[] args) {
 		MergeSort ms = new MergeSort();
-		int[] ary = MyRandomUtils.generateIntAry(size);
-		System.out.println(Arrays.toString(ary));
-		ary = ms.sort(ary);
-		System.out.println(Arrays.toString(ary));
+		int[] ary = MyRandomUtils.generateIntAry(size, 1, 4 * size);
+		int[] tempAry = new int[ary.length];
+		//System.out.println("原数组:\t" + Arrays.toString(ary));
+		
+		System.out.println("开始时间:" + MyDateUtils.getNowStr(MyDateUtils.yyyyMMdd_HHmmssSSS_));
+		ms.sort(ary, 0, ary.length - 1, tempAry);
+		System.out.println("结束时间:" + MyDateUtils.getNowStr(MyDateUtils.yyyyMMdd_HHmmssSSS_));
+		//System.out.println("排序后:\t" + Arrays.toString(ary));
 	}
 	
-	public int[] sort(int[] ary) {
-		//递归结束条件
-		if(MyArrayUtils.isEmpty(ary) || ary.length == 1) {
-			return ary;
-		} else if(ary.length == 2) {
-			if(ary[0] > ary[1]) {
-				int tmp = ary[0];
-				ary[0] = ary[1];
-				ary[1] = tmp;
-			}
-			return ary;
+	public void sort(int[] ary, int left, int right, int[] tempAry) {
+		if(left < right) {
+			int middle = (left + right) / 2;
+			sort(ary, left, middle, tempAry);
+			sort(ary, middle + 1, right, tempAry);
+			
+			merge(ary, left, middle, right, tempAry);
 		}
-		
-		//数组元素大于2个,就继续分成更小的数组
-		int middleIndex = ary.length >> 1;
-		int[] temp1 = sort(MyArrayUtils.subIntArray(ary, 0, middleIndex - 1));
-		int[] temp2 = sort(MyArrayUtils.subIntArray(ary, middleIndex, ary.length - 1));
-		return merge(temp1, temp2);
 	}
 	
 	/**
-	 * 将两个有序的数组合并成一个有序的大数组
+	 * 将原数组的[left, right]段进行归并
 	 */
-	private int[] merge(int[] aryA, int[] aryB) {
-		int[] temp = new int[aryA.length + aryB.length];
-		int tempIndex = 0;
-		int aryAIndex = 0;
-		int aryBIndex = 0;
-		for(; aryAIndex < aryA.length && aryBIndex < aryB.length;) {
-			if(aryA[aryAIndex] <= aryB[aryBIndex]) {
-				temp[tempIndex] = aryA[aryAIndex++];
+	private void merge(int[] ary, int left, int middle, int right, int[] tempAry) {
+		if(right - left == 1) {
+			//优化两两比较,如果只有两个值比较,直接比较并交换
+			if(ary[left] > ary[right]) {
+				MyArrayUtils.swap(ary, left, right);
+			}
+			return;
+		}
+		
+		int tempIndex = 0;			//指向临时数组中需要存放元素的下标
+		int leftIndex = left;		//指向左边需要比较的元素(向右移动)
+		int rightIndxe = middle + 1;//指向右边需要比较的元素(向右移动)
+
+		/**
+		 * 左半部分和右半部分都是从左到右一次拿出一个元素来比较
+		 * 较小元素就插入到临时数组,然后指针右移,直到某一部分没有元素为止
+		 */
+		while(leftIndex <= middle && rightIndxe <= right) {
+			if(ary[leftIndex] < ary[rightIndxe]) {
+				tempAry[tempIndex++] = ary[leftIndex++];
 			} else {
-				temp[tempIndex] = aryB[aryBIndex++];
-			}
-			tempIndex++;
-		}
-		
-		//将数组A中剩下的元素放入大数组中
-		if(aryAIndex < aryA.length) {
-			for(; aryAIndex < aryA.length; aryAIndex++) {
-				temp[tempIndex++] = aryA[aryAIndex];
+				tempAry[tempIndex++] = ary[rightIndxe++];
 			}
 		}
 		
-		//将数组B中剩下的元素放入大数组中
-		if(aryBIndex < aryB.length) {
-			for(; aryBIndex < aryB.length; aryBIndex++) {
-				temp[tempIndex++] = aryB[aryBIndex];
-			}
+		/**
+		 * 将另一部分剩余的元素插入到临时数据
+		 */
+		while(leftIndex <= middle) {
+			//如果左边有剩余
+			tempAry[tempIndex++] = ary[leftIndex++];
+		}
+		while(rightIndxe <= right) {
+			//如果右边有剩余
+			tempAry[tempIndex++] = ary[rightIndxe++];
 		}
 		
-		return temp;
+		/**
+		 * 将临时数据复制到原数组的[left, right]段
+		 */
+		tempIndex = 0;
+		int copyIndex = left;
+		while(copyIndex <= right) {
+			ary[copyIndex++] = tempAry[tempIndex++];
+		}
 	}
 }

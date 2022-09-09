@@ -17,15 +17,15 @@ public class BinarySearchForFirstGreatThanAndEqual {
 	private static int searchValue = 0;
 	
 	public static void main(String[] args) {
-		Integer[] ary = MyRandomUtils.generateIntegerAry(size);
+		int[] ary = MyRandomUtils.generateIntAry(size);
 		System.out.println(Arrays.toString(ary));
-		qs.sort(ary, false);
+		qs.sort(ary, 0, ary.length - 1);
 		System.out.println(Arrays.toString(ary));
 		
 		System.out.println("第一个大于等于" + searchValue + "的数的下标:[" + search(ary, 0, ary.length - 1) + "]");
 	}
 	
-	public static int search(Integer[] ary, int min, int max) {
+	public static int search(int[] ary, int min, int max) {
 		if(min >= max) {
 			return -1;
 		}

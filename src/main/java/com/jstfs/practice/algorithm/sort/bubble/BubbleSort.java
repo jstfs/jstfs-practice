@@ -2,6 +2,7 @@ package com.jstfs.practice.algorithm.sort.bubble;
 
 import java.util.Arrays;
 
+import com.jstfs.common.utils.MyArrayUtils;
 import com.jstfs.common.utils.MyDateUtils;
 import com.jstfs.common.utils.MyRandomUtils;
 
@@ -27,7 +28,7 @@ public class BubbleSort {
 	public static void main(String[] args) {
 		BubbleSort bs = new BubbleSort();
 		MyRandomUtils.setSeed(System.currentTimeMillis());
-		int[] ary = MyRandomUtils.generateIntAry(size, 1, size*4);
+		int[] ary = MyRandomUtils.generateIntAry(size, 1, 4 * size);
 		System.out.println("原数组:\t\t" + Arrays.toString(ary));
 		
 		System.out.println("开始时间:" + MyDateUtils.getNowStr());
@@ -48,14 +49,11 @@ public class BubbleSort {
 		for(int i = 0; i < size - 1; i++) {
 			boolean flag = true;	//提前退出冒泡的标识
 			int currSwapTimes = 0;	//本轮交换次数
-			int tmp = 0;			//交换值的临时变量
 			
 			for(int j = 0; j < size - i - 1; j++) {
 				if(ary[j] > ary[j+1]) {
 					//交换
-					tmp = ary[j];
-					ary[j] = ary[j+1];
-					ary[j+1] = tmp;
+					MyArrayUtils.swap(ary, j, j+1);
 					
 					sumSwapTimes++;
 					currSwapTimes++;

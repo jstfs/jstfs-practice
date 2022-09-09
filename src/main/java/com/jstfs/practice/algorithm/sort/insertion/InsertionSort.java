@@ -25,7 +25,7 @@ public class InsertionSort {
 	public static void main(String[] args) {
 		InsertionSort is = new InsertionSort();
 		MyRandomUtils.setSeed(System.currentTimeMillis());
-		int[] ary = MyRandomUtils.generateIntAry(size, 1, size*4);
+		int[] ary = MyRandomUtils.generateIntAry(size, 1, 4 * size);
 		System.out.println("原数组:\t\t" + Arrays.toString(ary));
 		
 		System.out.println("开始时间:" + MyDateUtils.getNowStr());

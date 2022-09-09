@@ -2,17 +2,21 @@ package com.jstfs.practice.algorithm.sort.shell;
 
 import java.util.Arrays;
 
+import com.jstfs.common.utils.MyArrayUtils;
 import com.jstfs.common.utils.MyDateUtils;
 import com.jstfs.common.utils.MyRandomUtils;
 
 /**
  * 希尔排序:
+ * 	平均间隔分组,每轮的组数逐渐减少,每组元素数量逐渐增大
+ * 	每组元素之间可以使用[交换]或者[移动-插入]的方式进行排序
+ * 	如果使用[移动-插入]的方式,相当于一种更加高效的插入排序版本
  * 	
  * 	1, 原地排序算法
- * 	2, 稳定的排序算法
+ * 	2, 不稳定的排序算法
  * 	3, 时间复杂度:
- * 		最好时间复杂度: O(N)
- * 		平均时间复杂度: O(N²)
+ * 		最好时间复杂度: O(N*log₂N)
+ * 		平均时间复杂度: O(N^[³/₂])
  * 		最坏时间复杂度: O(N²)
  *
  * @createBy 	落叶
@@ -24,7 +28,7 @@ public class ShellSort {
 	public static void main(String[] args) {
 		ShellSort ss = new ShellSort();
 		MyRandomUtils.setSeed(System.currentTimeMillis());
-		int[] ary = MyRandomUtils.generateIntAry(size, 1, size*4);
+		int[] ary = MyRandomUtils.generateIntAry(size, 1, 4 * size);
 		System.out.println("原数组:\t\t" + Arrays.toString(ary));
 		
 		System.out.println("开始时间:" + MyDateUtils.getNowStr());
@@ -75,12 +79,10 @@ public class ShellSort {
 				 * 
 				 * 其实就相当于慢慢将每组的每两个"相邻"的元素都进行过一次比较
 				 */
-				int temp = 0;	//交换值的临时变量
 				for(int j = i; j - groupCount >= 0; j -= groupCount) {
 					if(ary[j] < ary[j - groupCount]) {
-						temp = ary[j];
-						ary[j] = ary[j - groupCount];
-						ary[j - groupCount] = temp;
+						//交换
+						MyArrayUtils.swap(ary, j, j - groupCount);
 						
 						currSwqpTimes++;
 						sumSwapTimes++;

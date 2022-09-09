@@ -23,15 +23,15 @@ public class BinarySearch {
 	private static int searchValue = 1;
 	
 	public static void main(String[] args) {
-		Integer[] ary = MyRandomUtils.generateIntegerAry(size);
+		int[] ary = MyRandomUtils.generateIntAry(size);
 		System.out.println(Arrays.toString(ary));
-		qs.sort(ary, false);
+		qs.sort(ary, 0, ary.length - 1);
 		System.out.println(Arrays.toString(ary));
 		
 		System.out.println("随机一个等于" + searchValue + "的数的下标:[" + search(ary, 0, ary.length - 1, searchValue) + "]");
 	}
 	
-	public static int search(Integer[] ary, int min, int max, int value) {
+	public static int search(int[] ary, int min, int max, int value) {
 		if(min >= max) {
 			return -1;
 		}
