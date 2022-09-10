@@ -6,7 +6,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-import com.jstfs.common.utils.MyCollecitonUtils;
+import com.jstfs.common.utils.MyCollectionUtils;
 import com.jstfs.common.utils.MyRandomUtils;
 import com.jstfs.practice.algorithm.sort.quick.QuickSort;
 
@@ -56,6 +56,7 @@ public class BucketSort {
 	
 	public static void main(String[] args) {
 		BucketSort bs = new BucketSort();
+		MyRandomUtils.setSeed(System.currentTimeMillis());
 		int[] ary = MyRandomUtils.generateIntAry(size, min, max);
 		System.out.println("原数组:\t" + Arrays.toString(ary));
 		bs.sort(ary);
@@ -124,7 +125,7 @@ public class BucketSort {
 	 * 对桶内元素使用快速排序
 	 */
 	private void quickSort(List<Integer> bucket) {
-		int[] ary = MyCollecitonUtils.intListToAry(bucket);
+		int[] ary = MyCollectionUtils.intListToAry(bucket);
 		qs.sort(ary, 0, ary.length - 1);
 		for(int i = 0; i < ary.length; i++) {
 			bucket.set(i, ary[i]);

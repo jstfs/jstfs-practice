@@ -2,20 +2,17 @@ package com.jstfs.practice.algorithm.sort.counting;
 
 import java.util.ArrayList;
 import java.util.Arrays;
-import java.util.Collections;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-import org.apache.commons.collections.CollectionUtils;
-
-import com.jstfs.common.utils.MyCollecitonUtils;
+import com.jstfs.common.utils.MyCollectionUtils;
 import com.jstfs.common.utils.MyRandomUtils;
 import com.jstfs.practice.algorithm.sort.quick.QuickSort;
 
 /**
  * 计数排序:
- * 		是桶排序的一种特殊适应场景,所以对数据要求更高
+ * 		会用到桶的概念,对数据要求较高
  * 			1, 最小值和最大值之间的跨度相对于数据量来说很小(比如某个省某一年的高考成绩,考生个数(数据量)和成绩(桶)的个数之间)
  * 			2, 但对于数据分布是否均匀没有要求
  *		
@@ -42,6 +39,7 @@ public class CountingSort {
 	
 	public static void main(String[] args) {
 		CountingSort cs = new CountingSort();
+		MyRandomUtils.setSeed(System.currentTimeMillis());
 		int[] ary = MyRandomUtils.generateIntAry(size, min, max);
 		System.out.println("原数组:\t" + Arrays.toString(ary));
 		cs.sort(ary);
@@ -74,39 +72,9 @@ public class CountingSort {
 		//按照key的大小依次输出各个桶内的元素
 		for(Integer key : keyList) {
 			List<Integer> bucket = bucketMap.get(key);
-			if(CollectionUtils.isNotEmpty(bucket)) {
+			if(MyCollectionUtils.isNotEmpty(bucket)) {
 				for(Integer ele : bucket) {
 					ary[index++] = ele;
-				}
-			}
-		}
-	}
-	
-	/**
-	 * 专门定制的对手机号码某个位进行计数排序的方法
-	 */
-	public void sort(String[] phoneNos, int min, int max, int bit) {
-		Map<Integer, List<String>> bucketMap = new HashMap<Integer, List<String>>();
-		for(String phoneNo : phoneNos) {
-			String c = phoneNo.charAt(bit) + "";
-			if(bucketMap.containsKey(Integer.parseInt(c))) {
-				bucketMap.get(Integer.parseInt(c)).add(phoneNo);
-			} else {
-				List<String> bucket = new ArrayList<String>();
-				bucket.add(phoneNo);
-				bucketMap.put(Integer.parseInt(c), bucket);
-			}
-		}
-		
-		List<Integer> keyList = Arrays.asList(bucketMap.keySet().toArray(new Integer[]{}));
-		Collections.sort(keyList);
-		
-		int index = 0;
-		for(Integer key : keyList) {
-			List<String> bucket = bucketMap.get(key);
-			if(CollectionUtils.isNotEmpty(bucket)) {
-				for(String phoneNo : bucket) {
-					phoneNos[index++] = phoneNo;
 				}
 			}
 		}
@@ -116,7 +84,7 @@ public class CountingSort {
 	 * 对所有的key使用快速排序
 	 */
 	private void quickSort(List<Integer> keyList) {
-		int[] ary = MyCollecitonUtils.intListToAry(keyList);
+		int[] ary = MyCollectionUtils.intListToAry(keyList);
 		qs.sort(ary, 0, ary.length - 1);
 		for(int i = 0; i < ary.length; i++) {
 			keyList.set(i, ary[i]);
