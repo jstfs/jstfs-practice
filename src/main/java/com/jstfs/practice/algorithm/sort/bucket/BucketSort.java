@@ -75,7 +75,7 @@ public class BucketSort {
 			m = diff / spanPerBucket + 1;
 		}
 		
-		//此处是用List做桶,也可以用二维数组做桶
+		//存放数据的桶,此处是用List做桶,也可以用二维数组做桶
 		Map<Integer, List<Integer>> buckets = initBucket(m);	
 		
 		//将数据分别放入对应的桶中
@@ -92,7 +92,7 @@ public class BucketSort {
 		//对每个桶进行排序(此处选择的是快速排序)
 		for(Map.Entry<Integer, List<Integer>> entry : buckets.entrySet()) {
 			List<Integer> bucket = entry.getValue();
-			quickSortToBucket(bucket);
+			quickSort(bucket);
 		}
 		
 		//输出到原数组
@@ -123,7 +123,7 @@ public class BucketSort {
 	/**
 	 * 对桶内元素使用快速排序
 	 */
-	private void quickSortToBucket(List<Integer> bucket) {
+	private void quickSort(List<Integer> bucket) {
 		int[] ary = MyCollecitonUtils.intListToAry(bucket);
 		qs.sort(ary, 0, ary.length - 1);
 		for(int i = 0; i < ary.length; i++) {
