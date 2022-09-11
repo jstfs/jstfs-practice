@@ -6,15 +6,15 @@ import com.jstfs.common.utils.MyRandomUtils;
 import com.jstfs.practice.algorithm.sort.quick.QuickSort;
 
 /**
- * 二分查找变体四: 查找第一个大于等于给定值的元素
+ * 二分查找变体六: 查找第一个大于给定值的元素
  * 
  * @createBy 	落叶
  * @createTime 	2019-1-20 上午12:18:45
  */
-public class BinarySearchForFirstGreatThanAndEqual {
+public class BinarySearchForFirstGreatThan {
 	private static QuickSort qs = new QuickSort();
 	private static int size = 50;
-	private static int searchValue = 51;
+	private static int searchValue = 5;
 	
 	public static void main(String[] args) {
 		MyRandomUtils.setSeed(System.currentTimeMillis());
@@ -22,7 +22,7 @@ public class BinarySearchForFirstGreatThanAndEqual {
 		qs.sort(ary, 0, ary.length - 1);
 		System.out.println("有序数组:\t" + Arrays.toString(ary));
 		int index = search(ary, 0, ary.length - 1);
-		System.out.println("第一个大于等于" + searchValue + "的元素的下标:[" + index + "]");
+		System.out.println("第一个大于" + searchValue + "的元素的下标:[" + index + "]");
 	}
 	
 	public static int search(int[] ary, int min, int max) {
@@ -31,13 +31,13 @@ public class BinarySearchForFirstGreatThanAndEqual {
 		}
 		
 		int middle = (max + min) >> 1;
-		if(ary[middle] >= searchValue) {
-			if(middle == 0 || ary[middle - 1] < searchValue) {
+		if(ary[middle] > searchValue) {
+			if(middle == 0 || ary[middle - 1] <= searchValue) {
 				return middle;
 			}
 			return search(ary, min, middle - 1);
 		} else {
-			if(ary[middle + 1] >= searchValue) {
+			if(ary[middle + 1] > searchValue) {
 				return middle + 1;
 			}
 			return search(ary, middle + 1, max);

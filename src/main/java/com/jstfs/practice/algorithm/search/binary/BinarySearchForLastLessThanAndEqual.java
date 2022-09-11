@@ -6,31 +6,31 @@ import com.jstfs.common.utils.MyRandomUtils;
 import com.jstfs.practice.algorithm.sort.quick.QuickSort;
 
 /**
- * 二分查找变体二: 查找最后一个小于等于给定值的元素
+ * 二分查找变体五: 查找最后一个小于等于给定值的元素
  * 
  * @createBy 	落叶
  * @createTime 	2019-1-20 上午11:21:19
  */
-public class BinarySearchForFirstLessThanAndEqual {
+public class BinarySearchForLastLessThanAndEqual {
 	private static QuickSort qs = new QuickSort();
 	private static int size = 50;
-	private static int searchValue = 6;
+	private static int searchValue = 5;
 	
 	public static void main(String[] args) {
-		int[] ary = MyRandomUtils.generateIntAry(size);
-		System.out.println(Arrays.toString(ary));
+		MyRandomUtils.setSeed(System.currentTimeMillis());
+		int[] ary = MyRandomUtils.generateIntAry(size, 1, size);
 		qs.sort(ary, 0, ary.length - 1);
-		System.out.println(Arrays.toString(ary));
-		
-		System.out.println("最后一个小于等于" + searchValue + "的数的下标:[" + search(ary, 0, ary.length - 1) + "]");
+		System.out.println("有序数组:\t" + Arrays.toString(ary));
+		int index = search(ary, 0, ary.length - 1);
+		System.out.println("最后一个小于等于" + searchValue + "的元素的下标:[" + index + "]");
 	}
 	
 	public static int search(int[] ary, int min, int max) {
-		if(min >= max) {
+		if(min > max) {
 			return -1;
 		}
 		
-		int middle = min + ((max - min) >> 1);
+		int middle = (max + min) >> 1;
 		if(ary[middle] <= searchValue) {
 			if(middle == (ary.length - 1) || ary[middle + 1] > searchValue) {
 				return middle;
