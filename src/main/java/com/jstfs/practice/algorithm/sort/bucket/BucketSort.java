@@ -125,7 +125,7 @@ public class BucketSort {
 	 * 对桶内元素使用快速排序
 	 */
 	private void quickSort(List<Integer> bucket) {
-		int[] ary = MyCollectionUtils.intListToAry(bucket);
+		int[] ary = MyCollectionUtils.toArray(bucket);
 		qs.sort(ary, 0, ary.length - 1);
 		for(int i = 0; i < ary.length; i++) {
 			bucket.set(i, ary[i]);

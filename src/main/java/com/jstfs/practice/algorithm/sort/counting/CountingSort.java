@@ -84,7 +84,7 @@ public class CountingSort {
 	 * 对所有的key使用快速排序
 	 */
 	private void quickSort(List<Integer> keyList) {
-		int[] ary = MyCollectionUtils.intListToAry(keyList);
+		int[] ary = MyCollectionUtils.toArray(keyList);
 		qs.sort(ary, 0, ary.length - 1);
 		for(int i = 0; i < ary.length; i++) {
 			keyList.set(i, ary[i]);

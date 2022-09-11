@@ -6,7 +6,7 @@ import com.jstfs.common.utils.MyRandomUtils;
 import com.jstfs.practice.algorithm.sort.quick.QuickSort;
 
 /**
- * 二分查找变体二: 查找最后一个等于给定值的元素
+ * 二分查找变体二: 查找最后一个给定的元素
  * 
  * @createBy 	落叶
  * @createTime 	2019-1-20 上午12:00:45
@@ -14,19 +14,19 @@ import com.jstfs.practice.algorithm.sort.quick.QuickSort;
 public class BinarySearchForLast {
 	private static QuickSort qs = new QuickSort();
 	private static int size = 50;
-	private static int searchValue = 0;
+	private static int searchValue = 3;
 	
 	public static void main(String[] args) {
-		int[] ary = MyRandomUtils.generateIntAry(size);
-		System.out.println(Arrays.toString(ary));
+		MyRandomUtils.setSeed(System.currentTimeMillis());
+		int[] ary = MyRandomUtils.generateIntAry(size, 1, size);
 		qs.sort(ary, 0, ary.length - 1);
-		System.out.println(Arrays.toString(ary));
-		
-		System.out.println("最后一个等于" + searchValue + "的数的下标:[" + search(ary, 0, ary.length - 1) + "]");
+		System.out.println("有序数组:\t" + Arrays.toString(ary));
+		int index = search(ary, 0, ary.length - 1);
+		System.out.println("最后一个等于" + searchValue + "的元素的下标:[" + index + "]");
 	}
 	
 	public static int search(int[] ary, int min, int max) {
-		if(min >= max) {
+		if(min > max) {
 			return -1;
 		}
 		
