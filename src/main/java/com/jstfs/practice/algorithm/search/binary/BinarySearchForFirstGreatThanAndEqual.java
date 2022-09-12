@@ -14,7 +14,7 @@ import com.jstfs.practice.algorithm.sort.quick.QuickSort;
 public class BinarySearchForFirstGreatThanAndEqual {
 	private static QuickSort qs = new QuickSort();
 	private static int size = 20;
-	private static int searchValue = 5;
+	private static int searchValue = 20;
 	
 	public static void main(String[] args) {
 		MyRandomUtils.setSeed(System.currentTimeMillis());
@@ -26,8 +26,13 @@ public class BinarySearchForFirstGreatThanAndEqual {
 	}
 	
 	public static int search(int[] ary, int min, int max) {
-		if(ary[0] >= searchValue) {
+		if(searchValue <= ary[0]) {
+			//要找的元素小于等于最小值,直接返回下标0
 			return 0;
+		}
+		if(searchValue > ary[ary.length - 1]) {
+			//要找的元素比数组的最大值都大,即没找到
+			return -1;
 		}
 		
 		int middle = (max + min) >> 1;
@@ -37,9 +42,6 @@ public class BinarySearchForFirstGreatThanAndEqual {
 			}
 			return search(ary, min, middle - 1);
 		} else {
-			if(middle == ary.length -1) {
-				return -1;
-			}
 			if(ary[middle + 1] >= searchValue) {
 				return middle + 1;
 			}

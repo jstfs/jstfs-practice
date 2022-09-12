@@ -26,8 +26,13 @@ public class BinarySearchForFirstGreatThan {
 	}
 	
 	public static int search(int[] ary, int min, int max) {
-		if(ary[0] > searchValue) {
+		if(searchValue < ary[0]) {
+			//要找的元素小于最小值,直接返回下标0
 			return 0;
+		}
+		if(searchValue >= ary[ary.length - 1]) {
+			//要找的元素大于等于数组的最大值,即没找到
+			return -1;
 		}
 		
 		int middle = (max + min) >> 1;
@@ -37,9 +42,6 @@ public class BinarySearchForFirstGreatThan {
 			}
 			return search(ary, min, middle - 1);
 		} else {
-			if(middle == ary.length -1) {
-				return -1;
-			}
 			if(ary[middle + 1] > searchValue) {
 				return middle + 1;
 			}

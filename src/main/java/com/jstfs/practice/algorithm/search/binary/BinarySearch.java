@@ -19,7 +19,7 @@ import com.jstfs.practice.algorithm.sort.quick.QuickSort;
 public class BinarySearch {
 	private static QuickSort qs = new QuickSort();
 	private static int size = 50;
-	private static int searchValue = 30;
+	private static int searchValue = 7;
 	
 	public static void main(String[] args) {
 		MyRandomUtils.setSeed(System.currentTimeMillis());
@@ -31,7 +31,13 @@ public class BinarySearch {
 	}
 	
 	public static int search(int[] ary, int min, int max) {
-		if(min > max) {
+		if(ary[0] > searchValue || ary[ary.length - 1] < searchValue) {
+			//要找的元素不在数组的范围内
+			return -1;
+		}
+		if(min == max && ary[min] != searchValue) {
+			//要找的元素在数组的范围内,但不在数组内
+			//这种情况,最终都会回到 min==max
 			return -1;
 		}
 		

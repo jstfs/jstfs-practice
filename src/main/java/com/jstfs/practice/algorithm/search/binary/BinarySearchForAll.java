@@ -30,7 +30,13 @@ public class BinarySearchForAll {
 	}
 	
 	public static List<Integer> search(int[] ary, int min, int max) {
-		if(min > max) {
+		if(ary[0] > searchValue || ary[ary.length - 1] < searchValue) {
+			//要找的元素不在数组的范围内
+			return new ArrayList<Integer>();
+		}
+		if(min == max && ary[min] != searchValue) {
+			//要找的元素在数组的范围内,但不在数组内
+			//这种情况,最终都会回到 min==max
 			return new ArrayList<Integer>();
 		}
 		

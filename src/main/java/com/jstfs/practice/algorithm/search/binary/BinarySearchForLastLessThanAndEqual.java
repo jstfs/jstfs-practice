@@ -14,7 +14,7 @@ import com.jstfs.practice.algorithm.sort.quick.QuickSort;
 public class BinarySearchForLastLessThanAndEqual {
 	private static QuickSort qs = new QuickSort();
 	private static int size = 20;
-	private static int searchValue = 5;
+	private static int searchValue = 29;
 	
 	public static void main(String[] args) {
 		MyRandomUtils.setSeed(System.currentTimeMillis());
@@ -26,7 +26,12 @@ public class BinarySearchForLastLessThanAndEqual {
 	}
 	
 	public static int search(int[] ary, int min, int max) {
-		if(ary[ary.length - 1] <= searchValue) {
+		if(searchValue < ary[0] ) {
+			//要找的元素比数组的最小值都小,即没找到
+			return -1;
+		}
+		if(searchValue >= ary[ary.length - 1]) {
+			//要找的元素比数组的最大值都大,直接返回最大的下标
 			return ary.length - 1;
 		}
 		
@@ -37,9 +42,6 @@ public class BinarySearchForLastLessThanAndEqual {
 			}
 			return search(ary, middle + 1, max);
 		} else {
-			if(middle == 0) {
-				return -1;
-			}
 			if(ary[middle - 1] <= searchValue) {
 				return middle - 1;
 			}
