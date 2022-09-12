@@ -13,7 +13,7 @@ import com.jstfs.practice.algorithm.sort.quick.QuickSort;
  */
 public class BinarySearchForLastLessThanAndEqual {
 	private static QuickSort qs = new QuickSort();
-	private static int size = 50;
+	private static int size = 20;
 	private static int searchValue = 5;
 	
 	public static void main(String[] args) {
@@ -26,17 +26,20 @@ public class BinarySearchForLastLessThanAndEqual {
 	}
 	
 	public static int search(int[] ary, int min, int max) {
-		if(min > max) {
-			return -1;
+		if(ary[ary.length - 1] <= searchValue) {
+			return ary.length - 1;
 		}
 		
 		int middle = (max + min) >> 1;
 		if(ary[middle] <= searchValue) {
-			if(middle == (ary.length - 1) || ary[middle + 1] > searchValue) {
+			if(ary[middle + 1] > searchValue) {
 				return middle;
 			}
-			return search(ary, middle, max);
+			return search(ary, middle + 1, max);
 		} else {
+			if(middle == 0) {
+				return -1;
+			}
 			if(ary[middle - 1] <= searchValue) {
 				return middle - 1;
 			}
