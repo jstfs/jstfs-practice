@@ -14,7 +14,7 @@ import com.jstfs.practice.algorithm.sort.quick.QuickSort;
 public class BinarySearchForFirst {
 	private static QuickSort qs = new QuickSort();
 	private static int size = 50;
-	private static int searchValue = 8;
+	private static int searchValue = 5;
 	
 	public static void main(String[] args) {
 		MyRandomUtils.setSeed(System.currentTimeMillis());
@@ -26,8 +26,8 @@ public class BinarySearchForFirst {
 	}
 	
 	public static int search(int[] ary, int min, int max) {
-		if(ary[0] > searchValue || ary[ary.length - 1] < searchValue) {
-			//要找的元素不在数组的范围内
+		if(ary[min] > searchValue || ary[max] < searchValue) {
+			//要找的元素不在段内
 			return -1;
 		}
 		if(min == max && ary[min] != searchValue) {

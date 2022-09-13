@@ -8,7 +8,7 @@ import com.jstfs.practice.algorithm.sort.quick.QuickSort;
 /**
  * 二分查找:
  * 		数据必须是有序的
- * 		并且数据结构是顺序表结构,简单说就是数组,因为需要根据下标随机访问,如果是链表结构的话,时间复杂度会高很多
+ * 		数据结构是顺序表结构,如果是链表结构的话,不适合随机存取
  * 
  * 特点:
  *		时间复杂度: O(log₂N)
@@ -19,7 +19,7 @@ import com.jstfs.practice.algorithm.sort.quick.QuickSort;
 public class BinarySearch {
 	private static QuickSort qs = new QuickSort();
 	private static int size = 50;
-	private static int searchValue = 7;
+	private static int searchValue = 5;
 	
 	public static void main(String[] args) {
 		MyRandomUtils.setSeed(System.currentTimeMillis());
@@ -31,8 +31,9 @@ public class BinarySearch {
 	}
 	
 	public static int search(int[] ary, int min, int max) {
-		if(ary[0] > searchValue || ary[ary.length - 1] < searchValue) {
-			//要找的元素不在数组的范围内
+		if(ary[min] > searchValue || ary[max] < searchValue) {
+			//要找的元素不在段内,这样可以提前结束
+			//比如这种情况下{1,2,3,4,6,7,8}找5,在第二轮一开始就结束了
 			return -1;
 		}
 		if(min == max && ary[min] != searchValue) {
