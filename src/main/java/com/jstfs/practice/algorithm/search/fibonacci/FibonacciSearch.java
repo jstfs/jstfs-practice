@@ -1,4 +1,4 @@
-package com.jstfs.practice.algorithm.search.interpolation;
+package com.jstfs.practice.algorithm.search.fibonacci;
 
 import java.util.Arrays;
 
@@ -6,26 +6,21 @@ import com.jstfs.common.utils.MyRandomUtils;
 import com.jstfs.practice.algorithm.sort.quick.QuickSort;
 
 /**
- * 插值查找:
+ * 斐波纳挈查找:
  * 		数据必须是有序的
  * 		数据结构是顺序表结构,如果是链表结构的话,不适合随机存取
- * 		数据的分布越均匀越好
- * 		数据均匀的情况下,越是查找两端的元素越快
  * 
- * 特点:
- *		时间复杂度: O(log₂(log₂N))
- * 
- * @createBy	落叶
- * @createTime	2022年9月12日 下午2:34:55
+ * @createBy 	落叶
+ * @createTime 	2019-1-19 上午11:33:26
  */
-public class InterpolationSearch {
+public class FibonacciSearch {
 	private static QuickSort qs = new QuickSort();
-	private static int size = 20;
-	private static int searchValue = 20;
+	private static int size = 50;
+	private static int searchValue = 5;
 	
 	public static void main(String[] args) {
 		MyRandomUtils.setSeed(System.currentTimeMillis());
-		int[] ary = MyRandomUtils.generateIntAry(size, 1, size);
+		int[] ary = MyRandomUtils.generateIntAry(size, 1, 4 * size);
 		qs.sort(ary, 0, ary.length - 1);
 		System.out.println("有序数组:\t" + Arrays.toString(ary));
 		int index = search(ary, 0, ary.length - 1);
@@ -44,7 +39,7 @@ public class InterpolationSearch {
 			return -1;
 		}
 		
-		int middle = min + (max - min) * (searchValue - ary[min]) / (ary[max] - ary[min]);
+		int middle = (max + min) >> 1;
 		if(ary[middle] > searchValue) {
 			return search(ary, min, middle - 1);
 		} else if(ary[middle] < searchValue) {

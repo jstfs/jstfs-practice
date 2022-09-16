@@ -4,8 +4,8 @@ import java.util.Arrays;
 
 /**
  * 八皇后问题:
- * 	在一张8*8的棋盘上,放置8个皇后,要求每一行、每一列、每一斜线上都只能有一个皇后
- * 	那么一共有多少中不同的摆法?
+ * 		在一张8*8的棋盘上,放置8个皇后,要求每一行、每一列、每一斜线上都只能有一个皇后
+ * 		那么一共有多少中不同的摆法?
  * 
  * @createBy	落叶
  * @createTime	2022年9月2日 上午1:02:38
@@ -37,7 +37,7 @@ public class EightQueensPuzzle {
 	private void putQueen(int n) {
 		if(n == row) {
 			//说明8个皇后都放完了
-			show();
+			System.out.println(Arrays.toString(result));
 			count++;
 			return;
 		}
@@ -82,12 +82,5 @@ public class EightQueensPuzzle {
 		}
 		
 		return true;
-	}
-	
-	/**
-	 * 输出棋盘
-	 */
-	private void show() {
-		System.out.println(Arrays.toString(result));
 	}
 }
