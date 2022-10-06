@@ -16,7 +16,7 @@ public class BinaryTree {
 	private TreeErgodicTypeEnum threadedErgodicType = null;	//记录使用了哪种遍历顺序线索化
 	
 	public static void main(String[] args) {
-		BinaryTree bt = build1();
+		BinaryTree bt = build();
 		
 		bt.ergodic(TreeErgodicTypeEnum.ERGODIC_LRD);
 		bt.threaded(TreeErgodicTypeEnum.ERGODIC_LRD);
@@ -43,41 +43,6 @@ public class BinaryTree {
 		bt.rootNode.setRightChild(node3).setRightChild(node7);
 		node2.setRightChild(node5);
 		node3.setLeftChild(node6);
-		
-		bt.headNode = new BinaryTreeNode(0, "替天行道");
-		bt.headNode.setLeftChild(bt.rootNode);
-		
-		return bt;
-	}
-	
-	public static BinaryTree build1() {
-		BinaryTree bt = new BinaryTree();
-		bt.rootNode = new BinaryTreeNode(1, "宋江");
-		
-		BinaryTreeNode node2 = new BinaryTreeNode(2, "卢俊义");
-		BinaryTreeNode node3 = new BinaryTreeNode(3, "吴用");
-		BinaryTreeNode node4 = new BinaryTreeNode(4, "公孙胜");
-		BinaryTreeNode node5 = new BinaryTreeNode(5, "关胜");
-		BinaryTreeNode node6 = new BinaryTreeNode(6, "林冲");
-		BinaryTreeNode node7 = new BinaryTreeNode(7, "秦明");
-		BinaryTreeNode node8 = new BinaryTreeNode(8, "呼延灼");
-//		BinaryTreeNode node9 = new BinaryTreeNode(9, "花荣");
-		BinaryTreeNode node10 = new BinaryTreeNode(10, "柴进");
-		BinaryTreeNode node11 = new BinaryTreeNode(11, "李应");
-//		BinaryTreeNode node12 = new BinaryTreeNode(12, "朱仝");
-		BinaryTreeNode node13 = new BinaryTreeNode(13, "鲁智深");
-//		BinaryTreeNode node14 = new BinaryTreeNode(14, "武松");
-		BinaryTreeNode node15 = new BinaryTreeNode(15, "董平");
-		
-		
-		bt.rootNode.setLeftChild(node2).setLeftChild(node4).setLeftChild(node8);
-		bt.rootNode.setRightChild(node3).setRightChild(node7).setRightChild(node15);
-		
-		node2.setRightChild(node5).setRightChild(node11);
-		node3.setLeftChild(node6);
-		
-		node5.setLeftChild(node10);
-		node6.setRightChild(node13);
 		
 		bt.headNode = new BinaryTreeNode(0, "替天行道");
 		bt.headNode.setLeftChild(bt.rootNode);

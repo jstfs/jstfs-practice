@@ -4,7 +4,7 @@ import com.jstfs.practice.datastructure.chain.Node;
 import com.jstfs.practice.datastructure.chain.SingleChain;
 
 /**
- * 队列的数组实现
+ * 队列的链表实现
  *
  * @createBy 	落叶
  * @createTime 	2018-11-27 上午12:21:11
