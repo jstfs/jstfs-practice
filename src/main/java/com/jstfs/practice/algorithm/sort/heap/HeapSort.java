@@ -1,7 +1,6 @@
 package com.jstfs.practice.algorithm.sort.heap;
 
-import java.util.Arrays;
-
+import com.jstfs.common.utils.MyDateUtils;
 import com.jstfs.common.utils.MyRandomUtils;
 
 /**
@@ -33,12 +32,12 @@ public class HeapSort {
 	public static void main(String[] args) {
 		HeapSort hs = new HeapSort();
 		int[] ary = MyRandomUtils.generateIntAry(size, 1, 4 * size);
-		System.out.println("原数组:\t" + Arrays.toString(ary));
+		//System.out.println("原数组:\t" + Arrays.toString(ary));
 		
-//		System.out.println("开始时间:" + MyDateUtils.getNowStr(MyDateUtils.yyyyMMdd_HHmmssSSS_));
+		System.out.println("开始时间:" + MyDateUtils.getNowStr(MyDateUtils.yyyyMMdd_HHmmssSSS_));
 		hs.sort(ary, true);
-//		System.out.println("结束时间:" + MyDateUtils.getNowStr(MyDateUtils.yyyyMMdd_HHmmssSSS_));
-		System.out.println("排序后:\t" + Arrays.toString(ary));
+		System.out.println("结束时间:" + MyDateUtils.getNowStr(MyDateUtils.yyyyMMdd_HHmmssSSS_));
+		//System.out.println("排序后:\t" + Arrays.toString(ary));
 	}
 	
 	/**
@@ -99,7 +98,7 @@ public class HeapSort {
 		 * 那么需要再将k作为父节点,与其左右子节点再进行判断,
 		 */
 		for(int k = (2 * i + 1); k < length; k = (2 * k + 1)) {
-			if(ary[k + 1] > ary[k] && k + 1 < length) {
+			if(k + 1 < length && ary[k + 1] > ary[k]) {
 				//右子节点大就将k移动到右子节点的下标
 				k++;
 			}

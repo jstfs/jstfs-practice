@@ -2,7 +2,7 @@ package com.jstfs.practice.algorithm.search.binarytree;
 
 import com.jstfs.practice.datastructure.tree.binary.BinaryTree;
 import com.jstfs.practice.datastructure.tree.binary.TreeErgodicTypeEnum;
-import com.jstfs.practice.datastructure.tree.binary.BinaryTreeNode;
+import com.jstfs.practice.datastructure.tree.binary.TreeNode;
 
 /**
  * 二叉树查找
@@ -13,8 +13,8 @@ import com.jstfs.practice.datastructure.tree.binary.BinaryTreeNode;
 public class BinaryTreeSearch {
 
 	public static void main(String[] args) {
-		BinaryTree bt = BinaryTree.build();
-		BinaryTreeNode node = bt.serach(TreeErgodicTypeEnum.ERGODIC_LDR, 5);
+		BinaryTree bt = new BinaryTree();
+		TreeNode node = bt.serach(TreeErgodicTypeEnum.ERGODIC_LDR, 5);
 		System.out.println(node);
 	}
 }

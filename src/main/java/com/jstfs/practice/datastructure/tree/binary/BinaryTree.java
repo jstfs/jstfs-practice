@@ -9,15 +9,13 @@ import com.jstfs.common.utils.MyStringUtils;
  * @createTime	2022年9月15日 下午11:54:04
  */
 public class BinaryTree {
-	public BinaryTreeNode rootNode;		//根节点
-
-	private BinaryTreeNode headNode;	//头结点,其左子结点指向根节点,用于前序和中序线索化遍历
-	private BinaryTreeNode preNode;		//用于二叉树线索化或者遍历线索化二叉树时,保存上一个操作过的节点
+	private TreeNode 			rootNode;					//根节点
+	private TreeNode 			headNode;					//头结点,其左子结点指向根节点,用于前序和中序线索化遍历
+	private TreeNode 			preNode;					//用于二叉树线索化或者遍历线索化二叉树时,保存上一个操作过的节点
 	private TreeErgodicTypeEnum threadedErgodicType = null;	//记录使用了哪种遍历顺序线索化
 	
 	public static void main(String[] args) {
-		BinaryTree bt = build();
-		
+		BinaryTree bt = new BinaryTree(true);
 		bt.ergodic(TreeErgodicTypeEnum.ERGODIC_LRD);
 		bt.threaded(TreeErgodicTypeEnum.ERGODIC_LRD);
 		System.out.println("线索化后=========================================");
@@ -25,29 +23,44 @@ public class BinaryTree {
 	}
 	
 	/**
-	 * 创建一颗二叉树
+	 * 默认构造方法,构建一棵空二叉树
 	 */
-	public static BinaryTree build() {
-		BinaryTree bt = new BinaryTree();
-		bt.rootNode = new BinaryTreeNode(1, "宋江");
+	public BinaryTree() {
+		this(false);
+	}
+	
+	/**
+	 * 是否使用默认节点构建二叉树
+	 * 
+	 * @param defualtNode	true-使用默认节点构建二叉树, false-构建一棵空二叉树
+	 */
+	public BinaryTree(boolean defualtNode) {
+		if(defualtNode) {
+			this.build();
+		}
+	}
+	
+	/**
+	 * 使用默认的节点构建一颗二叉树
+	 */
+	public void build() {
+		rootNode = new TreeNode(1, "宋江");
 		
-		BinaryTreeNode node2 = new BinaryTreeNode(2, "卢俊义");
-		BinaryTreeNode node3 = new BinaryTreeNode(3, "吴用");
-		BinaryTreeNode node4 = new BinaryTreeNode(4, "公孙胜");
-		BinaryTreeNode node5 = new BinaryTreeNode(5, "关胜");
-		BinaryTreeNode node6 = new BinaryTreeNode(6, "林冲");
-		BinaryTreeNode node7 = new BinaryTreeNode(7, "秦明");
-		BinaryTreeNode node8 = new BinaryTreeNode(8, "呼延灼");
+		TreeNode node2 = new TreeNode(2, "卢俊义");
+		TreeNode node3 = new TreeNode(3, "吴用");
+		TreeNode node4 = new TreeNode(4, "公孙胜");
+		TreeNode node5 = new TreeNode(5, "关胜");
+		TreeNode node6 = new TreeNode(6, "林冲");
+		TreeNode node7 = new TreeNode(7, "秦明");
+		TreeNode node8 = new TreeNode(8, "呼延灼");
 		
-		bt.rootNode.setLeftChild(node2).setLeftChild(node4).setLeftChild(node8);
-		bt.rootNode.setRightChild(node3).setRightChild(node7);
+		rootNode.setLeftChild(node2).setLeftChild(node4).setLeftChild(node8);
+		rootNode.setRightChild(node3).setRightChild(node7);
 		node2.setRightChild(node5);
 		node3.setLeftChild(node6);
 		
-		bt.headNode = new BinaryTreeNode(0, "替天行道");
-		bt.headNode.setLeftChild(bt.rootNode);
-		
-		return bt;
+		headNode = new TreeNode(0, "替天行道");
+		headNode.setLeftChild(rootNode);
 	}
 	
 	/**
@@ -106,14 +119,14 @@ public class BinaryTree {
 	/**
 	 * 默认使用中序遍历来查找指定序号的元素
 	 */
-	public BinaryTreeNode serach(int index) {
+	public TreeNode serach(int index) {
 		return serach(TreeErgodicTypeEnum.ERGODIC_LDR, index);
 	}
 	
 	/**
 	 * 根据指定的遍历方式查找指定序号的元素
 	 */
-	public BinaryTreeNode serach(TreeErgodicTypeEnum typeEnum, int index) {
+	public TreeNode serach(TreeErgodicTypeEnum typeEnum, int index) {
 		String checkResult = check(typeEnum);
 		if(MyStringUtils.isNotEmpty(checkResult)) {
 			throw new RuntimeException(checkResult);
@@ -189,7 +202,7 @@ public class BinaryTree {
 	/**
 	 * 前序遍历
 	 */
-	private void ergodicDlr(BinaryTreeNode node) {
+	private void ergodicDlr(TreeNode node) {
 		System.out.println(node);
 		
 		if(node.getLeftChild() != null) {
@@ -204,7 +217,7 @@ public class BinaryTree {
 	/**
 	 * 中序遍历
 	 */
-	private void ergodicLdr(BinaryTreeNode node) {
+	private void ergodicLdr(TreeNode node) {
 		if(node.getLeftChild() != null) {
 			ergodicLdr(node.getLeftChild());
 		}
@@ -219,7 +232,7 @@ public class BinaryTree {
 	/**
 	 * 后序遍历
 	 */
-	private void ergodicLrd(BinaryTreeNode node) {
+	private void ergodicLrd(TreeNode node) {
 		if(node.getLeftChild() != null) {
 			ergodicLrd(node.getLeftChild());
 		}
@@ -235,7 +248,7 @@ public class BinaryTree {
 	 * 前序遍历线索二叉树
 	 */
 	private void ergodicThreadedDlr() {
-		BinaryTreeNode node = rootNode;
+		TreeNode node = rootNode;
 		while(node != null && node != headNode) {
 			System.out.println(node);
 			
@@ -251,7 +264,7 @@ public class BinaryTree {
 	 * 中序遍历线索二叉树
 	 */
 	private void ergodicThreadedLdr() {
-		BinaryTreeNode node = rootNode;
+		TreeNode node = rootNode;
 		while(node != null && node != headNode) {
 			while(!node.getLeftThreadFlag()) {
 				node = node.getLeftChild();
@@ -272,7 +285,7 @@ public class BinaryTree {
 	 * 后续遍历线索二叉树
 	 */
 	private void ergodicThreadedLrd() {
-		BinaryTreeNode node = rootNode;
+		TreeNode node = rootNode;
 		preNode = null;
 		
 		while(node != null) {
@@ -323,20 +336,20 @@ public class BinaryTree {
 	/**
 	 * 前序查找
 	 */
-	private BinaryTreeNode searchDlr(BinaryTreeNode node, int index) {
+	private TreeNode searchDlr(TreeNode node, int index) {
 		if(node.getIndex() == index) {
 			return node;
 		}
 		
 		if(node.getLeftChild() != null) {
-			BinaryTreeNode result = searchDlr(node.getLeftChild(), index);
+			TreeNode result = searchDlr(node.getLeftChild(), index);
 			if(result != null) {
 				return result;
 			}
 		}
 		
 		if(node.getRightChild() != null) {
-			BinaryTreeNode result = searchDlr(node.getRightChild(), index);
+			TreeNode result = searchDlr(node.getRightChild(), index);
 			if(result != null) {
 				return result;
 			}
@@ -348,9 +361,9 @@ public class BinaryTree {
 	/**
 	 * 中序查找
 	 */
-	private BinaryTreeNode searchLdr(BinaryTreeNode node, int index) {
+	private TreeNode searchLdr(TreeNode node, int index) {
 		if(node.getLeftChild() != null) {
-			BinaryTreeNode result = searchLdr(node.getLeftChild(), index);
+			TreeNode result = searchLdr(node.getLeftChild(), index);
 			if(result != null) {
 				return result;
 			}
@@ -361,7 +374,7 @@ public class BinaryTree {
 		}
 		
 		if(node.getRightChild() != null) {
-			BinaryTreeNode result = searchLdr(node.getRightChild(), index);
+			TreeNode result = searchLdr(node.getRightChild(), index);
 			if(result != null) {
 				return result;
 			}
@@ -373,16 +386,16 @@ public class BinaryTree {
 	/**
 	 * 后序查找
 	 */
-	private BinaryTreeNode searchLrd(BinaryTreeNode node, int index) {
+	private TreeNode searchLrd(TreeNode node, int index) {
 		if(node.getLeftChild() != null) {
-			BinaryTreeNode result = searchLrd(node.getLeftChild(), index);
+			TreeNode result = searchLrd(node.getLeftChild(), index);
 			if(result != null) {
 				return result;
 			}
 		}
 		
 		if(node.getRightChild() != null) {
-			BinaryTreeNode result = searchLrd(node.getRightChild(), index);
+			TreeNode result = searchLrd(node.getRightChild(), index);
 			if(result != null) {
 				return result;
 			}
@@ -398,7 +411,7 @@ public class BinaryTree {
 	/**
 	 * 前序线索化
 	 */
-	private void threadedDlr(BinaryTreeNode node) {
+	private void threadedDlr(TreeNode node) {
 		if(node.getLeftChild() == null) {
 			if(preNode == null) {
 				/**
@@ -431,7 +444,7 @@ public class BinaryTree {
 	/**
 	 * 中序线索化
 	 */
-	private void threadeLdr(BinaryTreeNode node) {
+	private void threadeLdr(TreeNode node) {
 		if(node.getLeftChild() != null) {
 			threadeLdr(node.getLeftChild());
 		}
@@ -460,7 +473,7 @@ public class BinaryTree {
 	 * 后序线索化
 	 * 同时设置父节点,使二叉链表变成三叉链表
 	 */
-	private void threadeLrd(BinaryTreeNode node) {
+	private void threadeLrd(TreeNode node) {
 		if(!node.getLeftThreadFlag() && node.getLeftChild() != null) {
 			//设置父节点,后序遍历用到
 			node.getLeftChild().setParent(node);
@@ -492,7 +505,7 @@ public class BinaryTree {
 	/**
 	 * 删除节点
 	 */
-	private boolean deleteNode(BinaryTreeNode node, int index) {
+	private boolean deleteNode(TreeNode node, int index) {
 		if(node.getLeftChild() != null && node.getLeftChild().getIndex() == index) {
 			node.setLeftChild(null);
 			return true;
@@ -522,5 +535,12 @@ public class BinaryTree {
 			return "遍历方式不能为空";
 		}
 		return null;
+	}
+
+	public TreeNode getRootNode() {
+		return rootNode;
+	}
+	public void setRootNode(TreeNode rootNode) {
+		this.rootNode = rootNode;
 	}
 }
