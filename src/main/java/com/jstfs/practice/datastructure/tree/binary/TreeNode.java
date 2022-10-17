@@ -8,22 +8,23 @@ package com.jstfs.practice.datastructure.tree.binary;
  */
 public class TreeNode implements Comparable<TreeNode> {
 	private int 		index = Integer.MIN_VALUE;		//序号,用于完全二叉树的节点顺序
-	private String 		data;							//节点的数据(也可以用来表示节点的权重)
+	private Object 		data;							//节点的数据(也可以用来表示节点的权重)
 	private TreeNode 	leftChild;						//左子节点
 	private TreeNode 	rightChild;						//右子节点
 	private TreeNode 	parent;							//父节点,为了后序遍历线索二叉树增加的
-	private int			weight = Integer.MIN_VALUE;		//节点的权重(用于赫夫曼树的节点之间的比较)
+	private Integer		weight = Integer.MIN_VALUE;		//节点的权重(用于赫夫曼树的节点之间的比较)
 	private boolean 	leftThreadFlag 	= false;		//左线索标识 [true-左节点是前驱节点, false-左节点是子节点]
 	private boolean 	rightThreadFlag = false;		//右线索标识 [true-右节点是后继节点, false-右节点是子节点]
 	
 	public TreeNode() {
 	}
 	
-	public TreeNode(int weight) {
+	public TreeNode(Object data, Integer weight) {
+		this.data = data;
 		this.weight = weight;
 	}
 	
-	public TreeNode(int index, String data) {
+	public TreeNode(int index, Object data) {
 		this.index = index;
 		this.data = data;
 	}
@@ -55,15 +56,10 @@ public class TreeNode implements Comparable<TreeNode> {
 
 		sb.append("[");
 		
-		if(index != Integer.MIN_VALUE) {
-			sb.append(index).append("-").append(data);
-			if(weight != Integer.MIN_VALUE) {
-				sb.append("-").append(weight);
-			}
+		if(weight != Integer.MIN_VALUE) {
+			sb.append(data).append("-").append(weight);
 		} else {
-			if(weight != Integer.MIN_VALUE) {
-				sb.append(weight);
-			}
+			sb.append(index).append("-").append(data);
 		}
 		
 		sb.append("]");
@@ -84,7 +80,7 @@ public class TreeNode implements Comparable<TreeNode> {
 	public Object getData() {
 		return data;
 	}
-	public void setData(String data) {
+	public void setData(Object data) {
 		this.data = data;
 	}
 	public TreeNode getLeftChild() {
@@ -136,10 +132,10 @@ public class TreeNode implements Comparable<TreeNode> {
 	public void setParent(TreeNode parent) {
 		this.parent = parent;
 	}
-	public int getWeight() {
+	public Integer getWeight() {
 		return weight;
 	}
-	public void setWeight(int weight) {
+	public void setWeight(Integer weight) {
 		this.weight = weight;
 	}
 	
