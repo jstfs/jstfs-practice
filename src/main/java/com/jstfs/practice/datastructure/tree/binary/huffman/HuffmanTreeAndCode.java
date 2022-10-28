@@ -14,7 +14,7 @@ import com.jstfs.practice.datastructure.tree.binary.TreeNode;
  * 赫夫曼树以及赫夫曼编码
  * 
  * 使用赫夫曼编码压缩文件的注意事项:
- * 		1, 文件本身已经被压缩过,那么压缩效果不会有明显变化
+ * 		1, 如果文件本身已经被压缩过,那么压缩效果不会有明显变化
  * 		2, 如果文件内容中重复的数据不多,那么压缩效果也不明显
  * 
  * @createBy	落叶
@@ -25,7 +25,7 @@ public class HuffmanTreeAndCode {
 	public static int lastByteLength = 0;
 	//赫夫曼编码表
 	public static Map<Byte, String> huffmanCodeMap = MyCollectionUtils.newMap(Byte.class, String.class);
-	//反赫夫曼编码表
+	//反向赫夫曼编码表
 	public static Map<String, Byte> reverseHuffmanCodeMap = MyCollectionUtils.newMap(String.class, Byte.class);
 	
 	public static void main(String[] args) {
@@ -125,7 +125,9 @@ public class HuffmanTreeAndCode {
 		List<TreeNode> nodes = new ArrayList<>();
 		
 		for(Map.Entry<Byte, Integer> entry : weightMap.entrySet()) {
-			nodes.add(new TreeNode(entry.getKey(), entry.getValue()));
+			TreeNode node = new TreeNode(entry.getKey());
+			node.setWeight(entry.getValue());
+			nodes.add(node);
 		}
 		
 		while(nodes.size() > 1) {
@@ -133,7 +135,8 @@ public class HuffmanTreeAndCode {
 			
 			TreeNode left = nodes.get(0);
 			TreeNode right = nodes.get(1);
-			TreeNode parent = new TreeNode(null, left.getWeight() + right.getWeight());
+			TreeNode parent = new TreeNode();
+			parent.setWeight(left.getWeight() + right.getWeight());
 			parent.setLeftChild(left);
 			parent.setRightChild(right);
 			
@@ -142,7 +145,7 @@ public class HuffmanTreeAndCode {
 			nodes.add(parent);
 		}
 		
-		BinaryTree huffmanTree = new BinaryTree(false);
+		BinaryTree huffmanTree = new BinaryTree();
 		huffmanTree.setRootNode(nodes.get(0));
 		return huffmanTree;
 	}

@@ -7,26 +7,31 @@ package com.jstfs.practice.datastructure.tree.binary;
  * @createTime	2022年9月15日 下午11:54:21
  */
 public class TreeNode implements Comparable<TreeNode> {
-	private int 		index = Integer.MIN_VALUE;		//序号,用于完全二叉树的节点顺序
-	private Object 		data;							//节点的数据(也可以用来表示节点的权重)
+	private Object 		data;							//节点上的数据
 	private TreeNode 	leftChild;						//左子节点
 	private TreeNode 	rightChild;						//右子节点
-	private TreeNode 	parent;							//父节点,为了后序遍历线索二叉树增加的
+	
+	private TreeNode 	parent;							//父节点(用于后序遍历线索二叉树)
 	private Integer		weight = Integer.MIN_VALUE;		//节点的权重(用于赫夫曼树的节点之间的比较)
-	private boolean 	leftThreadFlag 	= false;		//左线索标识 [true-左节点是前驱节点, false-左节点是子节点]
-	private boolean 	rightThreadFlag = false;		//右线索标识 [true-右节点是后继节点, false-右节点是子节点]
+	private boolean 	leftThreadFlag 	= false;		//左线索标识(用于二叉树的线索化,[true-左节点是前驱节点, false-左节点是子节点])
+	private boolean 	rightThreadFlag = false;		//右线索标识(用于二叉树的线索化,[true-右节点是后继节点, false-右节点是子节点])
+	private int			lever;							//节点所在层数(根节点为第1层)
 	
 	public TreeNode() {
 	}
 	
-	public TreeNode(Object data, Integer weight) {
+	public TreeNode(Object data) {
 		this.data = data;
-		this.weight = weight;
 	}
 	
-	public TreeNode(int index, Object data) {
-		this.index = index;
+	public TreeNode(Object data, int lever) {
 		this.data = data;
+		this.lever = lever;
+	}
+	
+	@Override
+	public int compareTo(TreeNode o) {
+		return this.weight - o.weight;
 	}
 	
 	/**
@@ -40,9 +45,6 @@ public class TreeNode implements Comparable<TreeNode> {
 	@Override
 	public String toString() {
 		StringBuilder sb = new StringBuilder();
-		if(parent != null && parent.getIndex() != Integer.MIN_VALUE) {
-			sb.append("[" + parent.getIndex() + "] ");
-		}
 		
 		if(leftChild != null) {
 			if(leftThreadFlag) {
@@ -59,7 +61,7 @@ public class TreeNode implements Comparable<TreeNode> {
 		if(weight != Integer.MIN_VALUE) {
 			sb.append(data).append("-").append(weight);
 		} else {
-			sb.append(index).append("-").append(data);
+			sb.append(data);
 		}
 		
 		sb.append("]");
@@ -83,36 +85,51 @@ public class TreeNode implements Comparable<TreeNode> {
 	public void setData(Object data) {
 		this.data = data;
 	}
+	/**
+	 * 获得左子结点,默认不包含线索化的左子结点
+	 */
 	public TreeNode getLeftChild() {
-		return leftChild;
+		return getLeftChild(false);
 	}
-	
 	/**
-	 * 可以链式构建树
+	 * 获得左子结点
+	 * 
+	 * @param containsThreadedNode	是否包含线索化的左子结点
 	 */
-	public TreeNode setLeftChild(TreeNode leftChild) {
+	public TreeNode getLeftChild(boolean containsThreadedNode) {
+		if(containsThreadedNode || !leftThreadFlag) {
+			return leftChild;
+		}
+		
+		return null;
+	}
+	public void setLeftChild(TreeNode leftChild) {
 		this.leftChild = leftChild;
-		return leftChild;
-	}
-	public TreeNode getRightChild() {
-		return rightChild;
 	}
 	/**
-	 * 可以链式构建树
+	 * 获得右子结点,默认不包含线索化的右子结点
 	 */
-	public TreeNode setRightChild(TreeNode rightChild) {
+	public TreeNode getRightChild() {
+		return getRightChild(false);
+	}
+	/**
+	 * 获得右子结点
+	 * 
+	 * @param containsThreadedNode	是否包含线索化的右子结点
+	 */
+	public TreeNode getRightChild(boolean containsThreadedNode) {
+		if(containsThreadedNode || !rightThreadFlag) {
+			return rightChild;
+		}
+		
+		return null;
+	}
+	public void setRightChild(TreeNode rightChild) {
 		this.rightChild = rightChild;
-		return rightChild;
 	}
 	public void setLeftAndRight(TreeNode leftChild, TreeNode rightChild) {
 		this.leftChild = leftChild;
 		this.rightChild = rightChild;
-	}
-	public int getIndex() {
-		return index;
-	}
-	public void setIndex(int index) {
-		this.index = index;
 	}
 	public boolean getLeftThreadFlag() {
 		return leftThreadFlag;
@@ -138,9 +155,10 @@ public class TreeNode implements Comparable<TreeNode> {
 	public void setWeight(Integer weight) {
 		this.weight = weight;
 	}
-	
-	@Override
-	public int compareTo(TreeNode o) {
-		return this.weight - o.weight;
+	public int getLever() {
+		return lever;
+	}
+	public void setLever(int lever) {
+		this.lever = lever;
 	}
 }
