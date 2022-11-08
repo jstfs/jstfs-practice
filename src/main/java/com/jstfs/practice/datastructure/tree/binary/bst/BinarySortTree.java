@@ -34,7 +34,7 @@ public class BinarySortTree extends BinaryTree {
 	
 	public BinarySortTree(boolean defualtNode) {
 		if(defualtNode) {
-			this.build();
+			build();
 		}
 	}
 	
@@ -43,10 +43,57 @@ public class BinarySortTree extends BinaryTree {
 	 */
 	@Override
 	public void build() {
+		build(dataAry);
+	}
+	
+	/**
+	 * 用整型数据作为data构建一棵树
+	 */
+	@Override
+	public void build(int[] dataAry) {
 		setRootNode(new TreeNode(dataAry[0]));
+		for(int i = 1; i < dataAry.length; i++) {
+			addNode(new TreeNode(dataAry[i]));
+		}
+	}
+	
+	/**
+	 * 添加节点
+	 */
+	@Override
+	public void addNode(TreeNode newNode) {
+		addNode(getRootNode(), newNode);
+	}
+	
+	/**
+	 * 给以指定节点为根节点的子树上添加节点
+	 * 
+	 * 如果要插入的节点小于当前节点:
+	 * 		如果当前节点的左子节点不存在,则设置要插入的节点为当前节点的左子节点,结束
+	 * 		如果当前节点的左子节点存在,则要插入的节点继续和当前节点的左子节点比较
+	 * 如果要插入的节点大于等于当前节点:
+	 * 		如果当前节点的右子节点不存在,则设置要插入的节点为当前节点的右子节点,结束
+	 * 		如果当前节点的右子节点存在,则要插入的节点继续和当前节点的右子节点比较
+	 * 
+	 * @param currNode	当前节点
+	 * @param newNode	要插入的节点
+	 */
+	public void addNode(TreeNode currNode, TreeNode newNode) {
+		int newData = (int) newNode.getData();
+		int currData = (int) currNode.getData();
 		
-		for (int i = 1; i < dataAry.length; i++) {
-			addNode(getRootNode(), new TreeNode(dataAry[i]));
+		if(newData < currData) {
+			if(currNode.getLeftChild() == null) {
+				currNode.setLeftChild(newNode);
+			} else {
+				addNode(currNode.getLeftChild(), newNode);
+			}
+		} else {
+			if(currNode.getRightChild() == null) {
+				currNode.setRightChild(newNode);
+			} else {
+				addNode(currNode.getRightChild(), newNode);
+			}
 		}
 	}
 	
@@ -159,39 +206,7 @@ public class BinarySortTree extends BinaryTree {
 		return searchParent(getRootNode(), data);
 	}
 	
-//======================================= public/private方法分界线 TODO =============================================================================
-	
-	/**
-	 * 将要插入的节点添加到以指定节点为根节点的子树中的某个位置
-	 * 
-	 * 如果要插入的节点小于当前节点:
-	 * 		如果当前节点的左子节点不存在,则设置要插入的节点为当前节点的左子节点,结束
-	 * 		如果当前节点的左子节点存在,则要插入的节点继续和当前节点的左子节点比较
-	 * 如果要插入的节点大于等于当前节点:
-	 * 		如果当前节点的右子节点不存在,则设置要插入的节点为当前节点的右子节点,结束
-	 * 		如果当前节点的右子节点存在,则要插入的节点继续和当前节点的右子节点比较
-	 * 
-	 * @param currNode	当前节点
-	 * @param newNode	要插入的节点
-	 */
-	private static void addNode(TreeNode currNode, TreeNode newNode) {
-		int newData = (int) newNode.getData();
-		int currData = (int) currNode.getData();
-		
-		if(newData < currData) {
-			if(currNode.getLeftChild() == null) {
-				currNode.setLeftChild(newNode);
-			} else {
-				addNode(currNode.getLeftChild(), newNode);
-			}
-		} else {
-			if(currNode.getRightChild() == null) {
-				currNode.setRightChild(newNode);
-			} else {
-				addNode(currNode.getRightChild(), newNode);
-			}
-		}
-	}
+//======================================= public/private 方法分界线 TODO =========================================================================
 	
 	/**
 	 * 在以指定节点作为根节点的子树中查找
@@ -267,4 +282,5 @@ public class BinarySortTree extends BinaryTree {
 		
 		return deleteNode(node.getData());
 	}
+	
 }

@@ -15,7 +15,6 @@ public class TreeNode implements Comparable<TreeNode> {
 	private Integer		weight = Integer.MIN_VALUE;		//节点的权重(用于赫夫曼树的节点之间的比较)
 	private boolean 	leftThreadFlag 	= false;		//左线索标识(用于二叉树的线索化,[true-左节点是前驱节点, false-左节点是子节点])
 	private boolean 	rightThreadFlag = false;		//右线索标识(用于二叉树的线索化,[true-右节点是后继节点, false-右节点是子节点])
-	private int			lever;							//节点所在层数(根节点为第1层)
 	
 	public TreeNode() {
 	}
@@ -24,23 +23,21 @@ public class TreeNode implements Comparable<TreeNode> {
 		this.data = data;
 	}
 	
-	public TreeNode(Object data, int lever) {
-		this.data = data;
-		this.lever = lever;
-	}
-	
+	/**
+	 * 节点之间的大小由权重决定,用于支持赫夫曼树
+	 */
 	@Override
 	public int compareTo(TreeNode o) {
 		return this.weight - o.weight;
 	}
 	
 	/**
-	 * ← :表示左子节点是前驱节点
-	 * ◀	 :表示左子节点是常规的子节点
-	 * ◁ :表示左子节点不存在
-	 * → :表示右子节点是后继结点
-	 * ▶ :表示右子节点是常规的子节点
-	 * ▷ :表示右子节点不存在
+	 * ◁ :	表示左子节点不存在
+	 * ▷ :	表示右子节点不存在
+	 * ◀	 :	表示左子节点是常规的子节点
+	 * ▶ :	表示右子节点是常规的子节点
+	 * ← :	表示左子节点是前驱节点
+	 * → :	表示右子节点是后继结点
 	 */
 	@Override
 	public String toString() {
@@ -78,13 +75,25 @@ public class TreeNode implements Comparable<TreeNode> {
 		
 		return sb.toString();
 	}
+	/**
+	 * 获得以当前节点为根节点的子树的高度
+	 */
+	public int getLever() {
+		return Math.max(leftChild == null ? 0 : leftChild.getLever(), rightChild == null ? 0 : rightChild.getLever()) + 1;
+	}
+	/**
+	 * 获得左子树的高度
+	 */
+	public int getLeftLever() {
+		return leftChild == null ? 0 : leftChild.getLever();
+	}
+	/**
+	 * 获得右子树的高度
+	 */
+	public int getRightLever() {
+		return rightChild == null ? 0 : rightChild.getLever();
+	}
 	
-	public Object getData() {
-		return data;
-	}
-	public void setData(Object data) {
-		this.data = data;
-	}
 	/**
 	 * 获得左子结点,默认不包含线索化的左子结点
 	 */
@@ -127,6 +136,12 @@ public class TreeNode implements Comparable<TreeNode> {
 	public void setRightChild(TreeNode rightChild) {
 		this.rightChild = rightChild;
 	}
+	public Object getData() {
+		return data;
+	}
+	public void setData(Object data) {
+		this.data = data;
+	}
 	public void setLeftAndRight(TreeNode leftChild, TreeNode rightChild) {
 		this.leftChild = leftChild;
 		this.rightChild = rightChild;
@@ -154,11 +169,5 @@ public class TreeNode implements Comparable<TreeNode> {
 	}
 	public void setWeight(Integer weight) {
 		this.weight = weight;
-	}
-	public int getLever() {
-		return lever;
-	}
-	public void setLever(int lever) {
-		this.lever = lever;
 	}
 }
