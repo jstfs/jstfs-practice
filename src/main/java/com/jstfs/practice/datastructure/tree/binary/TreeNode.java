@@ -10,8 +10,8 @@ public class TreeNode implements Comparable<TreeNode> {
 	private Object 		data;							//节点上的数据
 	private TreeNode 	leftChild;						//左子节点
 	private TreeNode 	rightChild;						//右子节点
+	private TreeNode 	parent;							//父节点(用于后序遍历线索二叉树和红黑树)
 	
-	private TreeNode 	parent;							//父节点(用于后序遍历线索二叉树)
 	private Integer		weight = Integer.MIN_VALUE;		//节点的权重(用于赫夫曼树的节点之间的比较)
 	private boolean 	leftThreadFlag 	= false;		//左线索标识(用于二叉树的线索化,[true-左节点是前驱节点, false-左节点是子节点])
 	private boolean 	rightThreadFlag = false;		//右线索标识(用于二叉树的线索化,[true-右节点是后继节点, false-右节点是子节点])
@@ -29,6 +29,13 @@ public class TreeNode implements Comparable<TreeNode> {
 	@Override
 	public int compareTo(TreeNode o) {
 		return this.weight - o.weight;
+	}
+	
+	/**
+	 * 打印树时,节点的输出方式
+	 */
+	public String printNode() {
+		return getData().toString(); 
 	}
 	
 	/**

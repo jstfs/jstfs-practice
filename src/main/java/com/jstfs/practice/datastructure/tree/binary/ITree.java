@@ -24,13 +24,9 @@ interface ITree {
 	 */
 	void setHeadNode(TreeNode headNode);
 	/**
-	 * 构建一棵树
+	 * 用自定义数据构建一棵二叉树
 	 */
-	void build();
-	/**
-	 * 用整型数据作为data构建一棵树
-	 */
-	void build(int[] dataAry);
+	void build(Object[] dataAry);
 	/**
 	 * 遍历二叉树
 	 */
@@ -75,12 +71,19 @@ interface ITree {
 	 */
 	TreeNode searchNode(TreeErgodicTypeEnum typeEnum, Object data);
 	/**
+	 * 删除数据
+	 * 
+	 * @param data	要删除的数据
+	 * @return		是否删除成功
+	 */
+	boolean deleteNode(Object data);
+	/**
 	 * 删除节点
 	 * 
-	 * @param data	要删除的节点的数据
-	 * @return		删除掉的节点
+	 * @param data	要删除的节点
+	 * @return		是否删除成功
 	 */
-	TreeNode deleteNode(Object data);
+	boolean deleteNode(TreeNode delNode);
 	/**
 	 * 打印树
 	 */
@@ -93,4 +96,8 @@ interface ITree {
 	 * 添加节点
 	 */
 	void addNode(TreeNode newNode);
+	/**
+	 * 添加节点成功后的动作
+	 */
+	abstract void afterAddNode(TreeNode newNode);
 }

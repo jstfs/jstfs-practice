@@ -51,34 +51,13 @@ public abstract class AbstractBinaryTree implements ITree {
 	}
 	
 	/**
-	 * 默认的构造树的实现
+	 * 构建一棵二叉树
 	 */
 	@Override
-	public void build() {
-		addNode(new TreeNode("1-宋江"));
-		addNode(new TreeNode("2-卢俊义"));
-		addNode(new TreeNode("3-吴用"));
-		addNode(new TreeNode("4-公孙胜"));
-		addNode(new TreeNode("5-关胜"));
-		addNode(new TreeNode("6-林冲"));
-		addNode(new TreeNode("7-秦明"));
-		addNode(new TreeNode("8-呼延灼"));
-		
-		headNode = new TreeNode("0-替天行道");
-		headNode.setLeftChild(rootNode);
-	}
-	
-	/**
-	 * 用整型数据作为data构建一棵树
-	 */
-	@Override
-	public void build(int[] dataAry) {
+	public void build(Object[] dataAry) {
 		for(int i = 0; i < dataAry.length; i++) {
 			addNode(new TreeNode(dataAry[i]));
 		}
-		
-		headNode = new TreeNode("0-替天行道");
-		headNode.setLeftChild(rootNode);
 	}
 	
 	/**
@@ -216,24 +195,51 @@ public abstract class AbstractBinaryTree implements ITree {
 	}
 	
 	/**
-	 * 删除节点(默认实现是连同以该节点为根节点的整个子树都删除)
+	 * 删除数据
 	 * 
-	 * @param data	要删除的节点的数据
-	 * @return		删除掉的节点
+	 * 默认实现是连同以该节点为根节点的整个子树都删除
+	 * 
+	 * @param data	要删除的数据
+	 * @return		是否删除成功
 	 */
 	@Override
-	public TreeNode deleteNode(Object data) {
+	public boolean deleteNode(Object data) {
 		if(rootNode == null) {
-			return null;
+			System.out.println("空树不能删除");
+			return false;
 		}
 		
-		if(rootNode.getData().equals(data)) {
-			TreeNode delNode = rootNode;
+		TreeNode delNode = searchNode(data);
+		if(delNode == null) {
+			System.out.println("要删除的节点[" + data + "]不存在");
+			return false;
+		}
+		
+		return deleteNode(delNode);
+	}
+	
+	/**
+	 * 删除节点
+	 * 
+	 * 默认实现是连同以该节点为根节点的整个子树都删除
+	 * 
+	 * @param delNode	要删除的节点
+	 * @return			是否删除成功
+	 */
+	@Override
+	public boolean deleteNode(TreeNode delNode) {
+		if(rootNode == null) {
+			System.out.println("空树不能删除");
+			return false;
+		}
+		
+		if(rootNode == delNode) {
+			System.out.println("删除根节点");
 			rootNode = null;
-			return delNode;
+			return true;
 		}
 		
-		return deleteNode(rootNode, data);
+		return deleteNode(rootNode, delNode);
 	}
 	
 	/**
@@ -246,7 +252,7 @@ public abstract class AbstractBinaryTree implements ITree {
 		}
 		
 		StringBuilder sb = new StringBuilder();
-		sb.append("[").append(rootNode.getData()).append("]").append("\n");
+		sb.append("[").append(rootNode.printNode()).append("]").append("\n");
 		
 		List<TreeNode> nodes = MyCollectionUtils.newList(TreeNode.class);
 		nodes.add(rootNode);
@@ -266,19 +272,6 @@ public abstract class AbstractBinaryTree implements ITree {
 		}
 		
 		return rootNode.getLever();
-	}
-	
-	/**
-	 * 添加节点
-	 */
-	@Override
-	public void addNode(TreeNode newNode) {
-		if(rootNode == null) {
-			rootNode = newNode;
-		} else {
-			List<TreeNode> nextLeverNodeList = MyCollectionUtils.newList(TreeNode.class, rootNode);
-			addNode(newNode, nextLeverNodeList); 
-		}
 	}
 	
 //======================================= public/private 方法分界线 TODO =========================================================================
@@ -597,34 +590,32 @@ public abstract class AbstractBinaryTree implements ITree {
 	
 	/**
 	 * 删除节点,连同以该节点为根节点的整个子树都删除
+	 * @param searchRootNode	把该节点作为根节点在其所有子节点中搜索要删除的节点
+	 * @param delNode			要删除的节点
+	 * @return					是否删除成功
 	 */
-	private TreeNode deleteNode(TreeNode node, Object data) {
-		TreeNode delNode = null;
-		if(node.getLeftChild() != null && node.getLeftChild().getData().equals(data)) {
-			delNode = node.getLeftChild();
-			node.setLeftChild(null);
-			return delNode;
+	private boolean deleteNode(TreeNode searchRootNode, TreeNode delNode) {
+		if(searchRootNode.getLeftChild() == delNode) {
+			searchRootNode.setLeftChild(null);
+			return true;
 		}
-		if(node.getRightChild() != null && node.getRightChild().getData().equals(data)) {
-			delNode = node.getRightChild();
-			node.setRightChild(null);
-			return delNode;
+		if(searchRootNode.getRightChild() == delNode) {
+			searchRootNode.setRightChild(null);
+			return true;
 		}
 		
-		if(node.getLeftChild() != null) {
-			delNode = deleteNode(node.getLeftChild(), data);
-			if(delNode != null) {
-				return delNode;
+		if(searchRootNode.getLeftChild() != null) {
+			if(deleteNode(searchRootNode.getLeftChild(), delNode)) {
+				return true;
 			}
 		}
-		if(node.getRightChild() != null) {
-			delNode = deleteNode(node.getRightChild(), data);
-			if(delNode != null) {
-				return delNode;
+		if(searchRootNode.getRightChild() != null) {
+			if(deleteNode(searchRootNode.getRightChild(), delNode)) {
+				return true;
 			}
 		}
 		
-		return null;
+		return false;
 	}
 	
 	/**
@@ -647,7 +638,7 @@ public abstract class AbstractBinaryTree implements ITree {
 			
 			if(node.getLeftChild() != null && !node.getLeftThreadFlag()) {
 				nodes.add(node.getLeftChild());
-				sb.append(node.getLeftChild().getData());
+				sb.append(node.getLeftChild().printNode());
 			} else {
 				sb.append("○");
 			}
@@ -656,7 +647,7 @@ public abstract class AbstractBinaryTree implements ITree {
 			
 			if(node.getRightChild() != null && !node.getRightThreadFlag()) {
 				nodes.add(node.getRightChild());
-				sb.append(node.getRightChild().getData());
+				sb.append(node.getRightChild().printNode());
 			} else {
 				sb.append("○");
 			}
@@ -672,30 +663,6 @@ public abstract class AbstractBinaryTree implements ITree {
 			sb.append("\n");
 			printTree(nodes, sb);
 		}
-	}
-	
-	/**
-	 * @param newNode	要添加的节点
-	 * @param nodeList	依次给这些节点上添加
-	 */
-	private void addNode(TreeNode newNode, List<TreeNode> nodeList) {
-		List<TreeNode> nextLeverNodeList = MyCollectionUtils.newList(TreeNode.class);
-		for(TreeNode node : nodeList) {
-			if(node.getLeftChild() == null) {
-				node.setLeftChild(newNode);
-				return;
-			} else {
-				nextLeverNodeList.add(node.getLeftChild());
-			}
-			
-			if(node.getRightChild() == null) {
-				node.setRightChild(newNode);
-				return;
-			} else {
-				nextLeverNodeList.add(node.getRightChild());
-			}
-		}
-		addNode(newNode, nextLeverNodeList);
 	}
 	
 }
