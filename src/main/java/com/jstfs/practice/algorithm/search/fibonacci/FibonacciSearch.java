@@ -10,42 +10,69 @@ import com.jstfs.practice.algorithm.sort.quick.QuickSort;
  * 		数据必须是有序的
  * 		数据结构是顺序表结构,如果是链表结构的话,不适合随机存取
  * 
- * @createBy 	落叶
- * @createTime 	2019-1-19 上午11:33:26
+ * @createBy	落叶
+ * @createTime	2022年12月17日 下午12:17:30
  */
 public class FibonacciSearch {
 	private static QuickSort qs = new QuickSort();
-	private static int size = 50;
+	private static int size = 20;
 	private static int searchValue = 5;
 	
 	public static void main(String[] args) {
 		MyRandomUtils.setSeed(System.currentTimeMillis());
 		int[] ary = MyRandomUtils.generateIntAry(size, 1, 4 * size);
+		
 		qs.sort(ary, 0, ary.length - 1);
 		System.out.println("有序数组:\t" + Arrays.toString(ary));
-		int index = search(ary, 0, ary.length - 1);
+		int index = search(ary, searchValue);
 		System.out.println("随机一个等于" + searchValue + "的元素的下标:[" + index + "]");
 	}
 	
-	public static int search(int[] ary, int min, int max) {
-		if(ary[min] > searchValue || ary[max] < searchValue) {
-			//要找的元素不在段内,这样可以提前结束
-			//比如这种情况下{1,2,3,4,6,7,8}找5,在第二轮一开始就结束了
-			return -1;
-		}
-		if(min == max && ary[min] != searchValue) {
-			//要找的元素在数组的范围内,但不在数组内
-			//这种情况,最终都会回到 min==max
-			return -1;
+	public static int search(int[] ary, int value) {
+		int low = 0;
+		int high = ary.length - 1;
+		int k = 0;
+		int mid = 0;
+		int fib[] = getFib(ary.length);
+		
+		while(high > fib[k] - 1) {
+			k++;
 		}
 		
-		int middle = (max + min) >> 1;
-		if(ary[middle] > searchValue) {
-			return search(ary, min, middle - 1);
-		} else if(ary[middle] < searchValue) {
-			return search(ary, middle + 1, max);
-		} else {
-			return middle;
+		int[] temp = Arrays.copyOf(ary, fib[k]);
+		
+		for(int i = high + 1; i < temp.length; i++) {
+			temp[i] = temp[high];
 		}
+		
+		while(low <= high) {
+			mid = low + fib[k - 1] - 1;
+			if(value < temp[mid]) {
+				high = mid - 1;
+				k--;
+			} else if(value > temp[mid]) {
+				low = mid + 1;
+				k = k - 2;
+			} else {
+				if(mid <= high) {
+					return mid;
+				} else {
+					return high;
+				}
+			}
+		}
+		
+		return -1;
+	}
+	
+	private static int[] getFib(int size) {
+		int[] fib = new int[size];
+		fib[0] = 1;
+		fib[1] = 1;
+		for(int i = 2; i < size; i++) {
+			fib[i] = fib[i-1] + fib[i-2];
+		}
+		
+		return fib;
 	}
 }
